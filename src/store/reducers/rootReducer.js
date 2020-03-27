@@ -1,3 +1,6 @@
 import { combineReducers } from "redux";
 
-export default combineReducers({});
+import userLogState from "./userLogState";
+import users from "./users";
+
+export default combineReducers({ userLogState, users });
