@@ -1,0 +1,21 @@
+.home {
+  width: 100%;
+  height: 100vh;
+}
+
+.homepage-img {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.description {
+  float: right;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+  margin-top: 10%;
+}
