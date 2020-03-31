@@ -8,7 +8,11 @@ export default class Homepage extends React.Component {
   render() {
     return (
       <div className="home">
-        <img className="homepage-img" src={require("../assets/images/bg.png")} />
+        <img
+          className="homepage-img"
+          src={require("../assets/images/bg.png")}
+          alt=""
+        />
         <div className="description">
           <h1>Why do you need LazyCook?</h1>
           <p>
