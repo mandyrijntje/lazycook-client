@@ -1,6 +1,4 @@
 import React from "react";
-// import { getEvents } from "../store/actions/event";
-// import { connect } from "react-redux";
 import "./Homepage.css";
 
 export default class Homepage extends React.Component {
