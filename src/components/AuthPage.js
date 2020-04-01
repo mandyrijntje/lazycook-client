@@ -12,7 +12,7 @@ class AuthPage extends React.Component {
         <div>
           <LoginFormContainer />
           <p>Not a member yet?</p>
-          <Link to="/signup">Join us.</Link>
+          <Link to="/signup">Join</Link>
         </div>
       );
     }
