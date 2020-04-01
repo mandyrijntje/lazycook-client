@@ -64,7 +64,8 @@ export const getUser = userParamId => (dispatch, getState) => {
         recipes: body.recipes
       };
       const action = singleUser(uniqueUser);
-      dispatch(action);
+      // dispatch(action);
+      dispatch({type: "UNIQUE_USER", payload: "A todo here"})
     })
     .catch(console.error);
 };

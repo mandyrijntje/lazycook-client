@@ -16,7 +16,7 @@ export const getIngredients = () => (dispatch, getState) => {
       .get(`${baseUrl}/ingredient`)
       .then(response => {
         // console.log(`get ings working`)
-        const action = allIngredients(response.body);
+        const action = allIngredients(response.body.ingredients);
         dispatch(action);
       })
       .catch(console.error);
