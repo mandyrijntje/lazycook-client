@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { useState } from "react";
+import React from "react";
+
 import MultiSelect from "react-multi-select-component";
 
 export default function RecipeForm(props) {
   const options = props.databaseIngredients.map(ingredient => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });
-  const name = props.databaseIngredients.map(ingredient => ingredient.id); 
+  const name = props.databaseIngredients.map(ingredient => ingredient.id);
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -41,13 +41,53 @@ export default function RecipeForm(props) {
         />
       </div>
       <div className="form-group col-sm-12">
-        <label className="col-sm-2">has Dairy</label>
+        <label className="col-sm-2">Step2 (Optional)</label>
         <input
           className="form-control"
-          type="checkbox"
-          name="hasDairy"
-          onChange={props.onCheck}
-          value={props.values.hasDairy}
+          type="text"
+          name="step2"
+          onChange={props.onChange}
+          value={props.values.step2}
+        />
+      </div>
+      <div className="form-group col-sm-12">
+        <label className="col-sm-2">Step3 (Optional)</label>
+        <input
+          className="form-control"
+          type="text"
+          name="step3"
+          onChange={props.onChange}
+          value={props.values.step3}
+        />
+      </div>
+      <div className="form-group col-sm-12">
+        <label className="col-sm-2">Step4 (Optional)</label>
+        <input
+          className="form-control"
+          type="text"
+          name="step4"
+          onChange={props.onChange}
+          value={props.values.step4}
+        />
+      </div>
+      <div className="form-group col-sm-12">
+        <label className="col-sm-2">Step5 (Optional)</label>
+        <input
+          className="form-control"
+          type="text"
+          name="step5"
+          onChange={props.onChange}
+          value={props.values.step5}
+        />
+      </div>
+      <div className="form-group col-sm-12">
+        <label className="col-sm-2">Step6 (Optional)</label>
+        <input
+          className="form-control"
+          type="text"
+          name="step6"
+          onChange={props.onChange}
+          value={props.values.step6}
         />
       </div>
       <div className="form-group col-sm-12">
@@ -71,6 +111,16 @@ export default function RecipeForm(props) {
         />
       </div>
       <div className="form-group col-sm-12">
+        <label className="col-sm-2">has Dairy</label>
+        <input
+          className="form-control"
+          type="checkbox"
+          name="hasDairy"
+          onChange={props.onCheck}
+          value={props.values.hasDairy}
+        />
+      </div>
+      <div className="form-group col-sm-12">
         <label className="col-sm-2">has Nuts</label>
         <input
           className="form-control"
@@ -89,7 +139,7 @@ export default function RecipeForm(props) {
         labelledBy={"Select"}
       />
       <button type="submit" className="btn btn-dark">
-        Save
+        Create
       </button>
     </form>
   );

@@ -10,7 +10,7 @@ class Navbar extends Component {
   render() {
     if (!this.props.userLogState.jwt) {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top">
           <button
             className="navbar-toggler"
             type="button"
@@ -47,7 +47,7 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top">
           <button
             className="navbar-toggler"
             type="button"

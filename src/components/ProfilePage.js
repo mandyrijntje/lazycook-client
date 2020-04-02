@@ -18,6 +18,8 @@ class ProfilePage extends Component {
         <p>You must log in to access this highly confidential material!</p>
       );
     } else if (!this.props.userRecipes) {
+      return <p> loading</p>;
+    } else if (this.props.userRecipes.length !== 0) {
       return (
         <div>
           <p>Welcome {this.props.email}!</p>
@@ -32,10 +34,10 @@ class ProfilePage extends Component {
           <CreateRecipeFormContainer />
           <div className="row">
             {" "}
-            <ProfileRecipes
+            {/* <ProfileRecipes
               user={this.props.user}
               recipes={this.props.userRecipes}
-            />
+            /> */}
           </div>
         </div>
       );
