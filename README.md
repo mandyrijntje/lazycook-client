@@ -47,7 +47,7 @@ PROS: Will teach you how to make toast
 3. **Connect server to client** ->
 
 
-    ```
+
     [Clone this repository and follow the readme](https://github.com/messmonte/lazycook-server)
     ```
 
