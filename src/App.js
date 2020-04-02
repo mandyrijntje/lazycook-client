@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage";
 import AuthPage from "./components/AuthPage";
 import SignupFormContainer from "./components/SignupFormContainer";
 import ProfilePage from "./components/ProfilePage";
+import AllRecipes from "./components/AllRecipes";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Route exact path="/login" component={AuthPage} />
       <Route exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/profile" component={ProfilePage} />
+      <Route exact path="/recipe" component={AllRecipes} />
     </div>
   );
 }

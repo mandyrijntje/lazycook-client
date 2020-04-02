@@ -15,7 +15,7 @@ export const getRecipes = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/recipe`)
       .then(response => {
-        // console.log(`get recipes working`)
+        console.log(`get recipes working`)
         const action = allRecipes(response.body);
         dispatch(action);
       })
