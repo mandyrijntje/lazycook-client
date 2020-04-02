@@ -20,7 +20,7 @@ class ProfileRecipes extends Component {
       const showForm = this.state.recipesInEdit.includes(recipe.id);
 
       return (
-        <div key={recipe.id}>
+        <div className='d-flex justify-content-center mb-5' key={recipe.id}>
           <RecipeCard user={this.props.user} recipe={recipe} />
           <div>
             <button

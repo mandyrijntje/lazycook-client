@@ -19,9 +19,7 @@ class ProfilePage extends Component {
       return (
         <p>You must log in to access this highly confidential material!</p>
       );
-    } else if (!this.props.userRecipes) {
-      return <p> loading</p>;
-    } else if (this.props.userRecipes.length !== 0) {
+    } else if (this.props.userRecipes.length === 0) {
       return (
         <div>
           <p>Welcome {this.props.email}!</p>
@@ -50,7 +48,7 @@ class ProfilePage extends Component {
 function mapStateToProps(state) {
   return {
     user: state.users.uniqueUser,
-    userRecipes: state.users.uniqueUser.recipes,
+    userRecipes: state.recipe.userRecipes,
     email: state.users.uniqueUser.email,
     userLogState: state.userLogState
   };
