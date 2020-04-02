@@ -35,10 +35,10 @@ class ProfilePage extends Component {
           <CreateRecipeFormContainer />
           <div className="row">
             {" "}
-            {/* <ProfileRecipes
+            <ProfileRecipes
               user={this.props.user}
               recipes={this.props.userRecipes}
-            /> */}
+            />
           </div>
         </div>
       );
