@@ -60,7 +60,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then(response => {
-      // console.log(response.body);
+      console.log(response.body);
       const action = newRecipe(response.body);
       dispatch(action);
     })

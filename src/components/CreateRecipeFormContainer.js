@@ -63,12 +63,17 @@ class CreateRecipeFormContainer extends React.Component {
   onSubmit = event => {
     event.preventDefault();
     this.props
-      .createRecipe(this.state, this.state.ingredientId, this.props.history)
+      .createRecipe(this.state, this.state.ingredients, this.props.history)
       .then(() => this.props.getUser());
     this.setState({
       name: "",
       imageUrl: "",
       step1: "",
+      step2: "",
+      step3: "",
+      step4: "",
+      step5: "",
+      step6: "",
       ingredients: [],
       isVegan: false,
       isVegetarian: false,
