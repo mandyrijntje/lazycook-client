@@ -10,6 +10,7 @@ class ProfilePage extends Component {
     // console.log(this.props.userLogState);
     if (this.props.userLogState.jwt) {
       this.props.getUser(this.props.userLogState.id);
+      this.props.getRecipesForUser(this.props.userLogState.id);
     }
   }
 

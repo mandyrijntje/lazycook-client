@@ -15,10 +15,15 @@ class CreateRecipeFormContainer extends React.Component {
     name: "",
     imageUrl: "",
     step1: "",
+    step2: "",
+    step3: "",
+    step4: "",
+    step5: "",
+    step6: "",
     ingredients: [],
     isVegan: false,
     isVegetarian: false,
-    hasNuts: true,
+    hasNuts: false,
     hasDairy: false
   };
 
