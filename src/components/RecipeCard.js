@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-class EventCard extends Component {
-
+export default class RecipeCard extends Component {
   render() {
     // console.log(
     //   `CARD USER`,
@@ -28,25 +26,12 @@ class EventCard extends Component {
             {this.props.user.email}
           </Link>
         </h3>
-        <h3 className="text-center">
-          {this.props.recipe.ingredients} 
-        </h3>
+        <h3 className="text-center">{this.props.recipe.ingredients}</h3>
         <img src={this.props.recipe.imageUrl} alt="" className="mr-3" />
         <p className="text-center"> {this.props.recipe.step1} </p>
         <p> Uploaded {Math.round(hours / 24)} days ago</p>
-        <div>
-         
-        </div>
+        <div></div>
       </div>
     );
   }
 }
-
-function mapStateToProps(state) {
-  return {
-    tickets: state.event.eventTickets
-  };
-}
-const mapDispatchToProps = { };
-
-export default connect(mapStateToProps, mapDispatchToProps)(EventCard);
