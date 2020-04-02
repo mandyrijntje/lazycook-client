@@ -8,6 +8,7 @@ import AuthPage from "./components/AuthPage";
 import SignupFormContainer from "./components/SignupFormContainer";
 import ProfilePage from "./components/ProfilePage";
 import AllRecipes from "./components/AllRecipes";
+import RecipeCard from "./components/RecipeCard";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/profile" component={ProfilePage} />
       <Route exact path="/recipe" component={AllRecipes} />
+      <Route exact path="/recipe/:id" component={RecipeCard} />
       <div className="page-footer font-small bg-info text-white pt-2 fixed-bottom">
         <div className="container-fluid text-center text-md-center">
           <div className="row">
