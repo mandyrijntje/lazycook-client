@@ -13,7 +13,6 @@ class SignupFormContainer extends React.Component {
       this.state.password,
       this.props.history
     );
-    this.props.getUser();
   };
   onChange = event => {
     this.setState({

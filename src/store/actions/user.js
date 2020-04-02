@@ -49,12 +49,13 @@ function singleUser(uniqueUser) {
 }
 
 export const getUser = userParamId => (dispatch, getState) => {
+  // console.log(userParamId)
   if (!userParamId) {
     const state = getState();
     userParamId = state.userLogState.id;
   }
   return request
-    .get(`${baseUrl}/users/${userParamId}`)
+    .get(`${baseUrl}/users/`+userParamId)
     .then(response => {
       const body = response.body;
 

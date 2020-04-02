@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 
 class ProfilePage extends Component {
   componentDidMount() {
+    // console.log(this.props.userLogState);
     if (this.props.userLogState.jwt) {
       this.props.getUser(this.props.userLogState.id);
     }
