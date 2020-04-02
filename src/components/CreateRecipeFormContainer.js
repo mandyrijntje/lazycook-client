@@ -9,7 +9,6 @@ import { getIngredients } from "../store/actions/ingredient";
 class CreateRecipeFormContainer extends React.Component {
   async componentDidMount() {
     await this.props.getIngredients();
-    //I need only the ingredients I choose for the recipe!
   }
 
   state = {
@@ -24,12 +23,12 @@ class CreateRecipeFormContainer extends React.Component {
   };
 
   onChange = event => {
-    console.log(
-      "do i get called?",
-      event.target,
-      event.target.value,
-      event.target.name
-    );
+    // console.log(
+    //   "do i get called?",
+    //   event.target,
+    //   event.target.value,
+    //   event.target.name
+    // );
 
     this.setState({
       [event.target.name]: event.target.value
@@ -37,16 +36,15 @@ class CreateRecipeFormContainer extends React.Component {
     });
   };
   onCheck = event => {
-    console.log(
-      "do i get called?",
-      event.target,
-      event.target.checked,
-      event.target.name
-    );
+    // console.log(
+    //   "do i get called?",
+    //   event.target,
+    //   event.target.checked,
+    //   event.target.name
+    // );
 
     this.setState({
       [event.target.name]: event.target.checked
-      //how do I set the booleans?
     });
   };
 
@@ -61,7 +59,6 @@ class CreateRecipeFormContainer extends React.Component {
     event.preventDefault();
     this.props
       .createRecipe(this.state, this.state.ingredientId, this.props.history)
-      //i need to pass a lot of ingredients!
       .then(() => this.props.getUser());
     this.setState({
       name: "",
@@ -75,7 +72,7 @@ class CreateRecipeFormContainer extends React.Component {
     });
   };
   render() {
-    console.log("render of CRFC ", this.state);
+    // console.log("render of CRFC ", this.state);
 
     return (
       <div>
@@ -85,7 +82,7 @@ class CreateRecipeFormContainer extends React.Component {
           onChange={this.onChange}
           onCheck={this.onCheck}
           values={this.state}
-          ingredients={this.state.ingredients} //was this props?
+          ingredients={this.state.ingredients} 
           onSelect={this.onSelect}
           databaseIngredients={this.props.ingredients}
         />
@@ -95,7 +92,7 @@ class CreateRecipeFormContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  console.log("what is my state", state);
+  // console.log("what is my state", state);
   return {
     ingredients: state.ingredient.all
   };

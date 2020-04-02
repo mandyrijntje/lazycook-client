@@ -10,22 +10,33 @@ class Navbar extends Component {
   render() {
     if (!this.props.userLogState.jwt) {
       return (
-        <nav className="navbar">
-          <div className="navbar-div">
-            <ul className="navbar-list">
-              <li className="nav-item">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav">
+              <li className="nav-item active mx-5">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/store" className="nav-link">
+                <Link to="/store" className="nav-link mx-5">
                   Store
                 </Link>
               </li>
             </ul>
-            <ul className="navbar-list">
-              <li className="nav-item">
+            <ul className="navbar-nav mr-0">
+              <li className="nav-item mx-5">
                 <Link to="/login" className="nav-link">
                   Login
                 </Link>
@@ -36,38 +47,49 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <nav className="navbar">
-          <div className="navbar-div">
-            <ul className="navbar-list">
-              <li className="nav-item">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav">
+              <li className="nav-item active mx-5">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/kitchen" className="nav-link">
+                <Link to="/kitchen" className="nav-link mx-5">
                   Kitchen
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/store" className="nav-link">
+                <Link to="/store" className="nav-link mx-5">
                   Store
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/recipe" className="nav-link">
+                <Link to="/recipe" className="nav-link mx-5">
                   Recipes
                 </Link>
               </li>
             </ul>
-            <ul className="navbar-list">
+            <ul className="navbar-nav mr-0">
               <li className="nav-item">
-                <Link to="/profile" className="nav-link">
+                <Link to="/profile" className="nav-link mx-5">
                   Profile
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" onClick={this.onLogout} className="nav-link">
+                <Link to="/" onClick={this.onLogout} className="nav-link mx-5">
                   Logout
                 </Link>
               </li>

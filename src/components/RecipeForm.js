@@ -6,7 +6,7 @@ export default function RecipeForm(props) {
   const options = props.databaseIngredients.map(ingredient => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });
-  const name = props.databaseIngredients.map(ingredient => ingredient.id); //why this?
+  const name = props.databaseIngredients.map(ingredient => ingredient.id); 
 
   return (
     <form onSubmit={props.onSubmit}>
