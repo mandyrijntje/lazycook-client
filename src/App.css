@@ -3,5 +3,11 @@
 }
 
 body {
-  background-color:#f1b339;
+  background-color: #f1b339;
+}
+
+@media screen and (max-width: 600px) {
+  .footer-part {
+    display: none;
+  }
 }

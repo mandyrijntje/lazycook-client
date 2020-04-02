@@ -10,7 +10,7 @@ class Navbar extends Component {
   render() {
     if (!this.props.userLogState.jwt) {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top mt-0">
           <button
             className="navbar-toggler"
             type="button"
@@ -23,7 +23,7 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item active mx-5">
                 <Link to="/" className="nav-link">
                   Home
@@ -34,8 +34,6 @@ class Navbar extends Component {
                   Store
                 </Link>
               </li>
-            </ul>
-            <ul className="navbar-nav mr-0">
               <li className="nav-item mx-5">
                 <Link to="/login" className="nav-link">
                   Login
@@ -47,7 +45,7 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-info sticky-top mt-0">
           <button
             className="navbar-toggler"
             type="button"
@@ -60,7 +58,7 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
               <li className="nav-item active mx-5">
                 <Link to="/" className="nav-link">
                   Home
@@ -81,8 +79,6 @@ class Navbar extends Component {
                   Recipes
                 </Link>
               </li>
-            </ul>
-            <ul className="navbar-nav mr-0">
               <li className="nav-item">
                 <Link to="/profile" className="nav-link mx-5">
                   Profile

@@ -17,5 +17,16 @@
   display: flex;
   flex-direction: column;
   margin-right: 10%;
-  margin-top: 10%;
+  margin-top: 11%;
+}
+
+@media screen and (max-width: 600px) {
+  .homepage-img {
+    display: none;
+  }
+  .description {
+    display: block;
+    float: left;
+    width: 100%;
+  }
 }
