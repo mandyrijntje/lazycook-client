@@ -1,68 +1,79 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import { updateRecipe, deleteRecipe } from "../store/actions/recipe";
+import { getIngredients } from "../store/actions/ingredient";
+import { getUser } from "../store/actions/user";
 import RecipeForm from "./RecipeForm";
 
 class EditRecipeFormContainer extends Component {
-  state = {
-    name: "",
-    imageUrl: "",
-    step1: "",
-    step2: "",
-    step3: "",
-    step4: "",
-    step5: "",
-    step6: "",
-    ingredients: [], //this should have already the ingredients!
-    isVegan: false, //what should the settings be?
-    isVegetarian: false,
-    hasNuts: false,
-    hasDairy: false
-  };
+  state = { recipe: { ...this.props.recipe } };
+
+  componentDidMount() {
+    this.props.getIngredients();
+  }
 
   onSubmit = event => {
     event.preventDefault();
 
-    const update = {
-        name: this.state.name,
-        imageUrl: this.state.imageUrl,
-        step1: this.state.step1,
-        step2: this.state.step2,
-        step3: this.state.step3,
-        step4: this.state.step4,
-        step5: this.state.step5,
-        step6: this.state.step6,
-        ingredients: [],
-        isVegan: false,
-        isVegetarian: false,
-        hasNuts: false,
-        hasDairy: false
-    };
-
-    this.props.updateRecipe(this.props.id, update);
+    this.props.updateRecipe(this.state.recipe.id, this.state.recipe);
   };
 
   onDelete = () => {
-    this.props.deleteRecipe(this.props.id);
+    this.props.deleteRecipe(this.state.recipe.id);
   };
   onChange = event => {
+   
+    event.persist();
+    console.log(event.nativeEvent);
     const { value, name } = event.target;
     // const value = event.target.value
     // const name = event.target.name
 
-    const update = { [name]: value };
+    const recipe = { [name]: value };
 
-    this.setState(update);
+    this.setState(recipe);
+  };
+
+  onSelect = theNewIngredientArray => {
+    this.setState({
+      recipe: {
+        ...this.state.recipe,
+        ingredients: theNewIngredientArray
+      }
+    });
+  };
+
+  onCheck = event => {
+    // console.log(
+    //   "do i get called?",
+    //   event.target,
+    //   event.target.checked,
+    //   event.target.name
+    // );
+
+    this.setState({
+      [event.target.name]: event.target.checked
+    });
   };
 
   reset = () => {
-    this.setState({
+    const resetRecipe = {
       name: "",
-      description: "",
-      picture: "",
-      startDate: "",
-      endDate: ""
-    });
+      imageUrl: "",
+      step1: "",
+      step2: "",
+      step3: "",
+      step4: "",
+      step5: "",
+      step6: "",
+      ingredients: [],
+      isVegan: false,
+      isVegetarian: false,
+      hasNuts: false,
+      hasDairy: false
+    };
+    this.setState({ recipe: resetRecipe });
   };
 
   render() {
@@ -71,7 +82,11 @@ class EditRecipeFormContainer extends Component {
         <RecipeForm
           onSubmit={this.onSubmit}
           onChange={this.onChange}
-          values={this.state}
+          onCheck={this.onCheck}
+          values={{ ...this.state.recipe }}
+          ingredients={this.state.recipe.ingredients}
+          onSelect={this.onSelect}
+          databaseIngredients={this.props.ingredients}
         />
         <button className="btn btn-dark" onClick={this.onDelete}>
           Delete
@@ -81,8 +96,19 @@ class EditRecipeFormContainer extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  // console.log("what is my state", state);
+  return {
+    ingredients: state.ingredient.all
+  };
+}
 const mapDispatchToProps = {
   updateRecipe,
-  deleteRecipe
+  deleteRecipe,
+  getIngredients,
+  getUser
 };
-export default connect(null, mapDispatchToProps)(EditRecipeFormContainer);
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(EditRecipeFormContainer)
+);

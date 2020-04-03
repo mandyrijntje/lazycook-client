@@ -34,10 +34,9 @@ class CreateRecipeFormContainer extends React.Component {
     //   event.target.value,
     //   event.target.name
     // );
-
+    const tempEvent = event.nativeEvent;
     this.setState({
-      [event.target.name]: event.target.value
-      //how do I set the booleans?
+      [tempEvent.target.name]: tempEvent.target.value
     });
   };
   onCheck = event => {
@@ -64,7 +63,7 @@ class CreateRecipeFormContainer extends React.Component {
     event.preventDefault();
     this.props
       .createRecipe(this.state, this.state.ingredients, this.props.history)
-      .then(() => this.props.getUser());
+      .then(() => this.props.getUser(this.props.user.id));
     this.setState({
       name: "",
       imageUrl: "",
@@ -92,7 +91,7 @@ class CreateRecipeFormContainer extends React.Component {
           onChange={this.onChange}
           onCheck={this.onCheck}
           values={this.state}
-          ingredients={this.state.ingredients} 
+          ingredients={this.state.ingredients}
           onSelect={this.onSelect}
           databaseIngredients={this.props.ingredients}
         />

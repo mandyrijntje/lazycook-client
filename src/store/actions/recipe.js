@@ -61,7 +61,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .send({ ...data, userId: userLogState.id })
     .then(response => {
       console.log(response.body);
-      const action = newRecipe(response.body);
+      const action = userRecipes(response.body);
       dispatch(action);
     })
     .then(() => history.push("/profile"))

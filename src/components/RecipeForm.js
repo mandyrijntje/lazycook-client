@@ -3,13 +3,14 @@ import React from "react";
 import MultiSelect from "react-multi-select-component";
 
 export default function RecipeForm(props) {
+  // console.log(props);
   const options = props.databaseIngredients.map(ingredient => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });
   const name = props.databaseIngredients.map(ingredient => ingredient.id);
 
   return (
-    <form onSubmit={props.onSubmit}>
+    <form className="pt-5 pb-5" onSubmit={props.onSubmit}>
       <div className="form-group col-sm-12">
         <label className="col-sm-2">Name</label>
         <input
@@ -47,7 +48,11 @@ export default function RecipeForm(props) {
           type="text"
           name="step2"
           onChange={props.onChange}
-          value={props.values.step2}
+          value={
+            props.values.step2 === null || props.values.step2 === ""
+              ? ""
+              : props.values.step2
+          }
         />
       </div>
       <div className="form-group col-sm-12">
@@ -57,7 +62,11 @@ export default function RecipeForm(props) {
           type="text"
           name="step3"
           onChange={props.onChange}
-          value={props.values.step3}
+          value={
+            props.values.step3 === null || props.values.step3 === ""
+              ? ""
+              : props.values.step3
+          }
         />
       </div>
       <div className="form-group col-sm-12">
@@ -67,7 +76,11 @@ export default function RecipeForm(props) {
           type="text"
           name="step4"
           onChange={props.onChange}
-          value={props.values.step4}
+          value={
+            props.values.step4 === null || props.values.step4 === ""
+              ? ""
+              : props.values.step4
+          }
         />
       </div>
       <div className="form-group col-sm-12">
@@ -77,7 +90,11 @@ export default function RecipeForm(props) {
           type="text"
           name="step5"
           onChange={props.onChange}
-          value={props.values.step5}
+          value={
+            props.values.step5 === null || props.values.step5 === ""
+              ? ""
+              : props.values.step5
+          }
         />
       </div>
       <div className="form-group col-sm-12">
@@ -87,7 +104,11 @@ export default function RecipeForm(props) {
           type="text"
           name="step6"
           onChange={props.onChange}
-          value={props.values.step6}
+          value={
+            props.values.step6 === null || props.values.step6 === ""
+              ? ""
+              : props.values.step6
+          }
         />
       </div>
       <div className="form-group col-sm-12">
@@ -138,8 +159,8 @@ export default function RecipeForm(props) {
         onChange={props.onSelect}
         labelledBy={"Select"}
       />
-      <button type="submit" className="btn btn-dark">
-        Create
+      <button type="submit" className="btn btn-dark mt-3">
+        Done
       </button>
     </form>
   );

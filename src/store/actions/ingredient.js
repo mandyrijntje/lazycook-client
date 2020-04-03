@@ -22,3 +22,24 @@ export const getIngredients = () => (dispatch, getState) => {
       .catch(console.error);
   }
 };
+
+function allCategories(categoryData) {
+  return {
+    type: "ALL_CATEGORIES",
+    payload: categoryData
+  };
+}
+export const getCategories = () => (dispatch, getState) => {
+  const state = getState();
+  const { ingredient } = state;
+  if (!ingredient.categories.length) {
+    request
+      .get(`${baseUrl}/category`)
+      .then(response => {
+        // console.log(`get cats working`)
+        const action = allCategories(response.body.categories);
+        dispatch(action);
+      })
+      .catch(console.error);
+  }
+};
