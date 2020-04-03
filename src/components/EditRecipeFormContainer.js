@@ -7,7 +7,7 @@ import { getUser } from "../store/actions/user";
 import RecipeForm from "./RecipeForm";
 
 class EditRecipeFormContainer extends Component {
-  state = { recipe: { ...this.props.recipe } };
+  state = { recipe: { ...this.props.recipe, ingredients: [] } };
 
   componentDidMount() {
     this.props.getIngredients();
@@ -16,32 +16,38 @@ class EditRecipeFormContainer extends Component {
   onSubmit = event => {
     event.preventDefault();
 
-    this.props.updateRecipe(this.state.recipe.id, this.state.recipe);
+    console.log("look at me", this.state.recipe);
+    this.props
+      .updateRecipe(this.state.recipe.id, this.state.recipe, this.props.history)
+      .then(this.props.history.push("/profile"));
   };
 
   onDelete = () => {
     this.props.deleteRecipe(this.state.recipe.id);
   };
   onChange = event => {
-   
-    event.persist();
+    const tempEvent = event.nativeEvent;
+
     console.log(event.nativeEvent);
-    const { value, name } = event.target;
+    const { value, name } = tempEvent.target;
     // const value = event.target.value
     // const name = event.target.name
 
-    const recipe = { [name]: value };
+    const recipe = { ...this.state.recipe, [name]: value };
 
-    this.setState(recipe);
+    this.setState({ recipe: recipe });
+    console.log(this.state.recipe);
   };
 
   onSelect = theNewIngredientArray => {
-    this.setState({
-      recipe: {
-        ...this.state.recipe,
-        ingredients: theNewIngredientArray
-      }
-    });
+    console.log(theNewIngredientArray);
+    const updatedIngredientsObject = {
+      ...this.state.recipe,
+      ingredients: theNewIngredientArray
+    };
+
+    this.setState({ recipe: updatedIngredientsObject });
+    console.log(this.state.recipe);
   };
 
   onCheck = event => {
@@ -77,13 +83,14 @@ class EditRecipeFormContainer extends Component {
   };
 
   render() {
+    console.log("why", this.state.recipe);
     return (
       <div>
         <RecipeForm
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           onCheck={this.onCheck}
-          values={{ ...this.state.recipe }}
+          values={this.state.recipe}
           ingredients={this.state.recipe.ingredients}
           onSelect={this.onSelect}
           databaseIngredients={this.props.ingredients}

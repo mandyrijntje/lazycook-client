@@ -53,6 +53,7 @@ class CreateRecipeFormContainer extends React.Component {
   };
 
   onSelect = theNewIngredientArray => {
+    console.log(theNewIngredientArray)
     this.setState({
       ...this.state,
       ingredients: theNewIngredientArray

@@ -15,7 +15,7 @@ export const getRecipes = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/recipe`)
       .then(response => {
-        console.log(`get recipes working`)
+        console.log(`get recipes working`);
         const action = allRecipes(response.body);
         dispatch(action);
       })
@@ -43,12 +43,12 @@ export const getRecipesForUser = userParamId => (dispatch, getState) => {
   }
 };
 
-function newRecipe(newRecipeData) {
-  return {
-    type: "NEW_RECIPE",
-    payload: newRecipeData
-  };
-}
+// function newRecipe(newRecipeData) {
+//   return {
+//     type: "NEW_RECIPE",
+//     payload: newRecipeData
+//   };
+// }
 
 export const createRecipe = (data, history) => (dispatch, getState) => {
   const state = getState();
@@ -68,14 +68,14 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .catch(console.error);
 };
 
-function changeRecipe(newRecipe) {
-  return {
-    type: "CHANGE_RECIPE",
-    payload: newRecipe
-  };
-}
+// function changeRecipe(newRecipe) {
+//   return {
+//     type: "CHANGE_RECIPE",
+//     payload: newRecipe
+//   };
+// }
 
-export function updateRecipe(id, update) {
+export function updateRecipe(id, update, history) {
   return async function(dispatch, getState) {
     const state = getState();
 
@@ -84,10 +84,10 @@ export function updateRecipe(id, update) {
       const response = await request
         .put(`${baseUrl}/recipe/${id}`)
         .set("Authorization", `Bearer ${userLogState.jwt}`)
-        .send(update);
-      const action = changeRecipe(response.body);
+        .send({ ...update, userId: userLogState.id });
+      const action = userRecipes(response.body);
 
-      dispatch(action);
+      dispatch(action).then(() => history.push("/profile"));
     } catch (error) {
       console.error(error);
     }
