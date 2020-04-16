@@ -21,13 +21,13 @@ PROS: Will teach you how to make toast
 
 ## Setting up (local)
 
-# Client
+### Client
 - React version
   - ^16.13.1
 - Redux version
   - ^4.0.5
 
-# Server
+### Server
 - Node version
   - ^12.16.1
 - Express version
@@ -39,8 +39,8 @@ PROS: Will teach you how to make toast
 
 ## Installation
 
-0. **Clone the repositories** 
-[Clone the server here](https://github.com/messmonte/lazycook-server)
+0. **Clone the repositories** <br>
+[Clone the server here!](https://github.com/messmonte/lazycook-server)
 1. **Install all dependencies** ->
 
 

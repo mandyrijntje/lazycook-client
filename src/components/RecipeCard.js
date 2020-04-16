@@ -30,7 +30,7 @@ export default class RecipeCard extends Component {
         <h3 className="text-center">Ingredients</h3>
         {/* how do I relate recipe to ingredients? */}
         <ul className="text-center">
-          {this.props.recipe.ingredients.map(ingredient => {
+          {this.props.recipe.ingredients.map((ingredient) => {
             return <li key={ingredient.id}>{ingredient.name}</li>;
           })}
         </ul>

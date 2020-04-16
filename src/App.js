@@ -5,6 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
 import KitchenContainer from "./components/KitchenContainer";
+import StoreContainer from "./components/StoreContainer";
 import AuthPage from "./components/AuthPage";
 import SignupFormContainer from "./components/SignupFormContainer";
 import ProfilePage from "./components/ProfilePage";
@@ -17,6 +18,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Homepage} />
       <Route exact path="/kitchen" component={KitchenContainer} />
+      <Route exact path="/store" component={StoreContainer} />
       <Route exact path="/login" component={AuthPage} />
       <Route exact path="/signup" component={SignupFormContainer} />
       <Route exact path="/profile" component={ProfilePage} />
