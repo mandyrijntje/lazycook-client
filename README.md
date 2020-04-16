@@ -19,16 +19,28 @@ PROS: Will teach you how to make toast
 
 - Store: Guests can shop for products at the store <br>(Functionality to be created)
 
-# Setting up (local)
+## Setting up (local)
 
+# Client
 - React version
   - ^16.13.1
 - Redux version
   - ^4.0.5
 
+# Server
+- Node version
+  - ^12.16.1
+- Express version
+  - ^4.17.1
+- Sequelize version
+  - ^5.21.5
+- PostgresQL version
+  - ^7.18.2
+
 ## Installation
 
-0. **Clone the repository**
+0. **Clone the repositories** 
+[Clone the server here](https://github.com/messmonte/lazycook-server)
 1. **Install all dependencies** ->
 
 
@@ -36,7 +48,21 @@ PROS: Will teach you how to make toast
     npm install
     ```
 
-2. **Start server and generate a recipe**
+2. **Start the server** ->
+
+
+    ```
+    npm run dev
+    ```
+
+3. **Create, load schema and seed the database** ->
+
+
+    ```
+    node seeds/recipeingredient.js
+    ```
+
+4. **Start server and generate a recipe**
 
 
     ```
@@ -44,11 +70,5 @@ PROS: Will teach you how to make toast
     ```
     Log in at localhost:3000/login, sign up using the Join link
 
-3. **Connect server to client** ->
 
-
-
-    [Clone this repository and follow the readme](https://github.com/messmonte/lazycook-server)
-    ```
-
-4. **Enjoy your lazy lunch.**
+5. **Enjoy your lazy lunch.**
