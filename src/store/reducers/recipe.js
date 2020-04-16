@@ -1,4 +1,4 @@
-const initialState = { all: [], userRecipes: [] };
+const initialState = { all: [], userRecipes: [], foundRecipe:[] };
 
 export default function(state = initialState, action = {}) {
   switch (action.type) {
@@ -18,6 +18,12 @@ export default function(state = initialState, action = {}) {
       return {
         ...state,
         userRecipes: action.payload
+      };
+    }
+    case "FOUND_RECIPE": {
+      return {
+        ...state,
+        foundRecipe: action.payload
       };
     }
     default:

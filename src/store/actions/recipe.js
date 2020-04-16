@@ -2,6 +2,30 @@ import request from "superagent";
 
 const baseUrl = "http://localhost:4000";
 
+function foundRecipe(uniqueRecipe) {
+  return {
+    type: "FOUND_RECIPE",
+    payload: uniqueRecipe
+  };
+}
+
+export const findRecipe = (data, history) => (dispatch, getState) => {
+  const state = getState();
+  const { userLogState } = state;
+
+  return request
+    .get(`${baseUrl}/kitchen/recipe`)
+    .set("Authorization", `Bearer ${userLogState.jwt}`)
+    .send({ ...data, userId: userLogState.id })
+    .then(response => {
+      console.log(response.body);
+      const action = foundRecipe(response.body);
+      dispatch(action);
+    })
+    .then(() => history.push("/profile"))
+    .catch(console.error);
+};
+
 function allRecipes(recipeData) {
   return {
     type: "ALL_RECIPES",

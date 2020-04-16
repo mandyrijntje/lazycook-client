@@ -1,0 +1,30 @@
+.categoryList {
+  width: 49%;
+  height: 100%;
+  float: left;
+  background-color: #e29b0b;
+  margin: 2% 0 2% 0;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 1% 0 1% 0;
+  align-items: center;
+}
+
+.recipeBox {
+  width: 49%;
+  height: 100%;
+  float: right;
+  background-color: #e29b0b;
+  margin: 2% 0 2% 0;
+}
+
+.categoryListItem {
+  width: 90%;
+  height: 10%;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
+  background-color: goldenrod;
+  color: rgb(39, 39, 39);
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.2);
+}

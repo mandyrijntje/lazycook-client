@@ -1,12 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { createRecipe } from "../store/actions/recipe";
-import RecipeForm from "./RecipeForm";
+import { findRecipe } from "../store/actions/recipe";
+import Kitchen from "./Kitchen";
 import { getUser } from "../store/actions/user";
 import { getIngredients } from "../store/actions/ingredient";
+import { getCategories } from "../store/actions/ingredient";
+import { getRecipes } from "../store/actions/recipe";
 
-class CreateRecipeFormContainer extends React.Component {
+class KitchenContainer extends React.Component {
   async componentDidMount() {
     await this.props.getCategories();
     await this.props.getIngredients();
@@ -14,76 +16,46 @@ class CreateRecipeFormContainer extends React.Component {
   }
 
   state = {
-    ingredients: []
+    ingredients: [],
   };
 
-  onChange = event => {
-    // console.log(
-    //   "do i get called?",
-    //   event.target,
-    //   event.target.value,
-    //   event.target.name
-    // );
-
+  onChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
-      //how do I set the booleans?
+      [event.target.name]: event.target.value,
     });
   };
-  onCheck = event => {
-    // console.log(
-    //   "do i get called?",
-    //   event.target,
-    //   event.target.checked,
-    //   event.target.name
-    // );
-
+  onCheck = (event) => {
     this.setState({
-      [event.target.name]: event.target.checked
+      [event.target.name]: event.target.checked,
     });
   };
 
-  onIngredientSelect = newIngredient => {
+  onIngredientSelect = (newIngredient) => {
     this.setState({
       ...this.state,
-      ingredients: this.state.ingredients.push(newIngredient)
+      ingredients: this.state.ingredients.push(newIngredient),
     }).then(this.props.getRecipeForIngredients(this.state.ingredients));
     //write action in ingredient & we also need backend!
   };
 
-  onCategorySelect = categoryId => {
+  onCategorySelect = (categoryId) => {
     this.props.getIngredientsForCategory(categoryId);
     //write action in ingredient
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props
-      .createRecipe(this.state, this.state.ingredients, this.props.history)
+      .findRecipe(this.state, this.state.ingredients, this.props.history)
       .then(() => this.props.getUser());
     this.setState({
-      name: "",
-      imageUrl: "",
-      step1: "",
-      step2: "",
-      step3: "",
-      step4: "",
-      step5: "",
-      step6: "",
       ingredients: [],
-      isVegan: false,
-      isVegetarian: false,
-      hasNuts: false,
-      hasDairy: false
     });
   };
   render() {
-    // console.log("render of CRFC ", this.state);
-
     return (
       <div>
-        <h2>Create a simple recipe.</h2>
-        <RecipeForm
+        <Kitchen
           onSubmit={this.onSubmit}
           onChange={this.onChange}
           onCheck={this.onCheck}
@@ -91,6 +63,8 @@ class CreateRecipeFormContainer extends React.Component {
           ingredients={this.state.ingredients}
           onSelect={this.onSelect}
           databaseIngredients={this.props.ingredients}
+          categories={this.props.categories}
+          foundRecipe={this.props.foundRecipe}
         />
       </div>
     );
@@ -100,11 +74,13 @@ class CreateRecipeFormContainer extends React.Component {
 function mapStateToProps(state) {
   // console.log("what is my state", state);
   return {
-    ingredients: state.ingredient.all
+    ingredients: state.ingredient.all,
+    categories: state.ingredient.categories,
+    foundRecipe: state.recipe.foundRecipe,
   };
 }
-const mapDispatchToProps = { createRecipe, getIngredients, getUser };
+const mapDispatchToProps = { findRecipe, getIngredients, getCategories, getRecipes, getUser };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CreateRecipeFormContainer)
+  connect(mapStateToProps, mapDispatchToProps)(KitchenContainer)
 );
