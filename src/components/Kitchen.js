@@ -9,7 +9,10 @@ export default class Kitchen extends Component {
     return (
       <div>
         <ul className="categoryList">{categoryList}</ul>
-        <div className="recipeBox">Recipe Box</div>
+        <div className="recipeContainer">
+            <div className="ingredientBox">ing</div>
+            <div className="recipeBox">blabla</div>
+        </div>
       </div>
     );
   }

@@ -27,16 +27,16 @@ function App() {
       <div className="page-footer font-small bg-info text-white pt-2 fixed-bottom">
         <div className="container-fluid text-center text-md-center">
           <div className="row">
-            <div className="footer-part col-md-6 mt-md-0 mt-3">
-              <p>0800 - 1700 CET • Mondays to Fridays</p>
+            <div className="footer-part col-md-6 mt-md-0 mt-1 text-left">
+              <span>0800 - 1700 CET • Weekdays (Weekends are for relaxation)</span>
             </div>
-            <div className="footer-part col-md-6 mb-md-0 mb-3">
-              <p>55 Hemellaan, Amsterdam • 06262-62626 • info@lazycook.com</p>
+            <div className="footer-part col-md-6 mb-md-0 mb-0 text-right">
+              <span>55 Straatlaan, Amsterdam • 06262-62626 • info@lazycook.com</span>
             </div>
           </div>
         </div>
         <div className="footer-copyright text-center pb-1">
-          © 2020 Copyright:
+          © 2020 copyright
           <a className="text-white" href="https://www.lazycook.com/sghsdkgshkdg">
             {" "}
             www.lazycook.com
