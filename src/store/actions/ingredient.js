@@ -5,7 +5,7 @@ const baseUrl = "http://localhost:4000";
 function allIngredients(ingredientData) {
   return {
     type: "ALL_INGREDIENTS",
-    payload: ingredientData
+    payload: ingredientData,
   };
 }
 export const getIngredients = () => (dispatch, getState) => {
@@ -14,7 +14,7 @@ export const getIngredients = () => (dispatch, getState) => {
   if (!ingredient.all.length) {
     request
       .get(`${baseUrl}/ingredient`)
-      .then(response => {
+      .then((response) => {
         // console.log(`get ings working`)
         const action = allIngredients(response.body.ingredients);
         dispatch(action);
@@ -26,7 +26,7 @@ export const getIngredients = () => (dispatch, getState) => {
 function allCategories(categoryData) {
   return {
     type: "ALL_CATEGORIES",
-    payload: categoryData
+    payload: categoryData,
   };
 }
 export const getCategories = () => (dispatch, getState) => {
@@ -35,11 +35,33 @@ export const getCategories = () => (dispatch, getState) => {
   if (!ingredient.categories.length) {
     request
       .get(`${baseUrl}/category`)
-      .then(response => {
+      .then((response) => {
         // console.log(`get cats working`)
         const action = allCategories(response.body.categories);
         dispatch(action);
       })
       .catch(console.error);
   }
+};
+
+function categoryIngredients(data) {
+  return {
+    type: "CATEGORY_INGREDIENTS",
+    payload: data,
+  };
+}
+
+export const getIngredientsForCategory = (categoryId) => (
+  dispatch,
+  getState
+) => {
+  // const state = getState();
+
+  request
+    .get(`${baseUrl}/category/${categoryId}/ingredients`)
+    .then((response) => {
+      const action = categoryIngredients(response.body);
+      dispatch(action);
+    })
+    .catch(console.error);
 };

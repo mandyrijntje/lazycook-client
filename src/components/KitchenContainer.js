@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { findRecipe } from "../store/actions/recipe";
+//
+import { findRecipe, getRecipes } from "../store/actions/recipe";
 import Kitchen from "./Kitchen";
 import { getUser } from "../store/actions/user";
-import { getIngredients } from "../store/actions/ingredient";
-import { getCategories } from "../store/actions/ingredient";
-import { getRecipes } from "../store/actions/recipe";
+import {
+  getIngredients,
+  getIngredientsForCategory,
+  getCategories,
+} from "../store/actions/ingredient";
 
 class KitchenContainer extends React.Component {
   async componentDidMount() {
@@ -19,39 +22,42 @@ class KitchenContainer extends React.Component {
     ingredients: [],
   };
 
+  // multiValueContainer = ({ selectProps, data }) => {
+  //   const label = data.label;
+  //   const allSelected = selectProps.value;
+  //   const index = allSelected.findIndex(selected => selected.label === label);
+  //   const isLastSelected = index === allSelected.length - 1;
+  //   const labelSuffix = isLastSelected ? ` (${allSelected.length})` : ", ";
+  //   const val = `${label}${labelSuffix}`;
+  //   return val;
+  // };
+
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
-  onCheck = (event) => {
-    this.setState({
-      [event.target.name]: event.target.checked,
-    });
-  };
 
   onIngredientSelect = (newIngredient) => {
+    console.log(newIngredient);
     this.setState({
       ...this.state,
       ingredients: this.state.ingredients.push(newIngredient),
-    }).then(this.props.getRecipeForIngredients(this.state.ingredients));
-    //write action in ingredient & we also need backend!
+    }).then(
+      this.props
+        .findRecipe(this.state.ingredients, this.props.history)
+        .then(() => this.props.getUser())
+    );
   };
 
   onCategorySelect = (categoryId) => {
     this.props.getIngredientsForCategory(categoryId);
-    //write action in ingredient
   };
 
-  onSubmit = (event) => {
+  onCategorySearch = (event) => {
     event.preventDefault();
-    this.props
-      .findRecipe(this.state, this.state.ingredients, this.props.history)
-      .then(() => this.props.getUser());
-    this.setState({
-      ingredients: [],
-    });
   };
+  //
   render() {
     return (
       <div>
@@ -72,14 +78,21 @@ class KitchenContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("what is my state", state);
   return {
     ingredients: state.ingredient.all,
     categories: state.ingredient.categories,
     foundRecipe: state.recipe.foundRecipe,
+    categoryIngredients: state.ingredient.categoryIngredients,
   };
 }
-const mapDispatchToProps = { findRecipe, getIngredients, getCategories, getRecipes, getUser };
+const mapDispatchToProps = {
+  findRecipe,
+  getIngredients,
+  getCategories,
+  getIngredientsForCategory,
+  getRecipes,
+  getUser,
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(KitchenContainer)
