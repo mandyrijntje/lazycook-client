@@ -18,7 +18,7 @@ export const findRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then(response => {
-      console.log(response.body);
+      // console.log(response.body);
       const action = foundRecipe(response.body);
       dispatch(action);
     })
@@ -39,7 +39,7 @@ export const getRecipes = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/recipe`)
       .then(response => {
-        console.log(`get recipes working`);
+        // console.log(`get recipes working`);
         const action = allRecipes(response.body);
         dispatch(action);
       })
@@ -84,7 +84,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then(response => {
-      console.log(response.body);
+      // console.log(response.body);
       const action = userRecipes(response.body);
       dispatch(action);
     })

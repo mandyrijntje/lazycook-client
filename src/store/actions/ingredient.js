@@ -58,8 +58,9 @@ export const getIngredientsForCategory = (categoryId) => (
   // const state = getState();
 
   request
-    .get(`${baseUrl}/category/${categoryId}/ingredients`)
+    .get(`${baseUrl}/category/${categoryId}/ingredient`)
     .then((response) => {
+      // console.log(`get ing4cats working`);
       const action = categoryIngredients(response.body);
       dispatch(action);
     })

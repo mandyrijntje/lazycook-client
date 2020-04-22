@@ -13,7 +13,7 @@ class ProfileRecipes extends Component {
     // const newState = this.state.recipesInEdit.includes(recipe.id)
     //   ? this.state.recipesInEdit.filter(id => id !== recipe.id)
     //   : this.state.recipesInEdit.concat(recipe.id);
-    console.log(recipe);
+    // console.log(recipe);
     this.setState({ showForm: true });
     
   };

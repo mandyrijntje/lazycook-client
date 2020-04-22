@@ -49,7 +49,6 @@ function singleUser(uniqueUser) {
 }
 
 export const getUser = userParamId => (dispatch, getState) => {
-  // console.log(userParamId)
   if (!userParamId) {
     const state = getState();
     userParamId = state.userLogState.id;
@@ -66,7 +65,6 @@ export const getUser = userParamId => (dispatch, getState) => {
       };
       const action = singleUser(uniqueUser);
       dispatch(action);
-      // dispatch({type: "UNIQUE_USER", payload: "what do I write here"})
     })
     .catch(console.error);
 };

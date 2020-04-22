@@ -16,7 +16,7 @@ class EditRecipeFormContainer extends Component {
   onSubmit = event => {
     event.preventDefault();
 
-    console.log("look at me", this.state.recipe);
+    // console.log("look at me", this.state.recipe);
     this.props
       .updateRecipe(this.state.recipe.id, this.state.recipe, this.props.history)
       .then(this.props.history.push("/profile"));
@@ -28,7 +28,7 @@ class EditRecipeFormContainer extends Component {
   onChange = event => {
     const tempEvent = event.nativeEvent;
 
-    console.log(event.nativeEvent);
+    // console.log(event.nativeEvent);
     const { value, name } = tempEvent.target;
     // const value = event.target.value
     // const name = event.target.name
@@ -36,18 +36,18 @@ class EditRecipeFormContainer extends Component {
     const recipe = { ...this.state.recipe, [name]: value };
 
     this.setState({ recipe: recipe });
-    console.log(this.state.recipe);
+    // console.log(this.state.recipe);
   };
 
   onSelect = theNewIngredientArray => {
-    console.log(theNewIngredientArray);
+    // console.log(theNewIngredientArray);
     const updatedIngredientsObject = {
       ...this.state.recipe,
       ingredients: theNewIngredientArray
     };
 
     this.setState({ recipe: updatedIngredientsObject });
-    console.log(this.state.recipe);
+    // console.log(this.state.recipe);
   };
 
   onCheck = event => {
@@ -83,7 +83,7 @@ class EditRecipeFormContainer extends Component {
   };
 
   render() {
-    console.log("why", this.state.recipe);
+    // console.log("why", this.state.recipe);
     return (
       <div>
         <RecipeForm

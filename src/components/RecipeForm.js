@@ -4,10 +4,10 @@ import MultiSelect from "react-multi-select-component";
 
 export default function RecipeForm(props) {
   // console.log(props);
-  const options = props.databaseIngredients.map(ingredient => {
+  const options = props.databaseIngredients.map((ingredient) => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });
-  const name = props.databaseIngredients.map(ingredient => ingredient.id);
+  const name = props.databaseIngredients.map((ingredient) => ingredient.id);
 
   return (
     <form className="pt-5 pb-5" onSubmit={props.onSubmit}>
