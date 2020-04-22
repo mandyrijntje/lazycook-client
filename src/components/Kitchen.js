@@ -3,6 +3,14 @@ import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
 
 export default class Kitchen extends Component {
+  state = {
+    toggled: false,
+  };
+  componentDidMount = () => {
+    document.body.addEventListener("click", (event) =>
+      this.handleUnClick(event)
+    );
+  };
   handleClick = (event) => {
     event.target.parentElement.childNodes[0].classList.toggle("changeIndex-2");
     event.target.parentElement
@@ -10,7 +18,25 @@ export default class Kitchen extends Component {
       .classList.toggle("changeIndex-1");
     event.target.parentElement.querySelector(".searchBox").focus();
     event.target.parentElement.classList.toggle("changeIndex-3");
+    this.setState({ toggled: true });
   };
+
+  handleUnClick = (event) => {
+    if (this.state.toggled === true) {
+      console.log(event.target);
+      document
+        .querySelector(".changeIndex-3")
+        .childNodes[0].classList.toggle("changeIndex-2"); //chilled nodes = all children of this element
+      document
+        .querySelector(".changeIndex-3")
+        .childNodes[1].classList.toggle("changeIndex-1");
+      document
+        .querySelector(".changeIndex-3")
+        .classList.toggle("changeIndex-3");
+      this.setState({ toggled: false });
+    }
+  };
+
   render() {
     const options = this.props.databaseIngredients.map((ingredient) => {
       return {

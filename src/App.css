@@ -2,14 +2,15 @@
   text-align: center;
 }
 
-html, body {
+html,
+body {
   height: 100%;
-  margin: 0px;
 }
-
 
 body {
   background-color: #f1b339;
+  font-family: "Spartan";
+  padding: 40px;
 }
 
 @media screen and (max-width: 600px) {
