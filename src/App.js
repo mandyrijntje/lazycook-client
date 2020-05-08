@@ -24,7 +24,7 @@ function App() {
       <Route exact path="/profile" component={ProfilePage} />
       <Route exact path="/recipe" component={AllRecipes} />
       <Route exact path="/recipe/:id" component={RecipeCard} />
-      <div className="page-footer font-small bg-info text-white pt-2 fixed-bottom">
+      <div className="page-footer d-flex flex-row w-100 font-small bg-info text-white pt-2 ">
         <div className="container-fluid text-center text-md-center">
           <div className="row">
             <div className="footer-part col-md-6 mt-md-0 mt-1 text-left">

@@ -8,7 +8,7 @@ export default class Homepage extends React.Component {
       <div className="home">
         <img
           className="homepage-img"
-          src={require("../assets/images/bg.png")}
+          src={require("../assets/images/bg2.png")}
           alt=""
         />
         <div className="description">
