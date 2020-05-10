@@ -135,8 +135,10 @@ class Kitchen extends Component {
           <div className="ingredientBox">
             {this.state.ingredientsList.map((ing, index) => {
               return (
-                <span className="ingbox" key={index}>
-                  {ing.name}
+                <span className="bigbox">
+                  <span className="ingbox" key={index}>
+                    {ing.name}
+                  </span>
                   <span
                     className="close"
                     onClick={() => this.onRemove(ing.name)}
@@ -145,7 +147,14 @@ class Kitchen extends Component {
               );
             })}
           </div>
-          <div className="recipeBox">{this.props.foundRecipe.step1}</div>
+          <div className="recipeBox">
+            <div className="recipeName">{this.props.foundRecipe.name}</div>
+            <img
+              className="recipeImage"
+              src={this.props.foundRecipe.imageUrl}
+              alt=""
+            />
+          </div>
         </div>
       </div>
     );
