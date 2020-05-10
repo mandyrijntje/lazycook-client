@@ -8,9 +8,10 @@ import { getUser } from "../store/actions/user";
 import { getIngredientsForCategory } from "../store/actions/ingredient";
 
 class Kitchen extends Component {
+  multiselectRef = React.createRef();
   state = {
     toggled: false,
-    ingredients: [],
+    ingredientsList: [],
   };
   componentDidMount() {
     document.body.addEventListener("click", (event) =>
@@ -26,14 +27,18 @@ class Kitchen extends Component {
   };
 
   onIngredientSelect = (newIngredient) => {
-    // console.log(newIngredient);
-    this.setState({
-      ...this.state,
-      ingredients: this.state.ingredients.push(newIngredient),
-    }).then(
-      this.props
-        .findRecipe(this.state.ingredients, this.props.history)
-        .then(() => this.props.getUser())
+    const tempArr = [
+      ...this.state.ingredientsList,
+      newIngredient[newIngredient.length - 1],
+    ];
+
+    this.setState(
+      {
+        ingredientsList: tempArr,
+      },
+      () =>
+        this.props.findRecipe(this.state.ingredientsList, this.props.history)
+      // .then(() => this.props.getUser())
     );
   };
 
@@ -71,11 +76,11 @@ class Kitchen extends Component {
       this.setState({ toggled: false });
     }
   };
-  onSelect(selectedList, selectedItem) {}
 
-  onRemove(selectedList, removedItem) {}
+  onRemove(ingToBeRemoved) {}
+
   getIng = (id) => {
-    console.log(id);
+    // console.log(id);
     let arr = [];
     if (this.props.databaseIngredients.length > 0) {
       this.props.databaseIngredients.forEach((item) => {
@@ -94,19 +99,22 @@ class Kitchen extends Component {
         },
       ];
     }
-    console.log(arr);
+    // console.log(arr);
     return arr;
   };
   render() {
+    console.log(this.props.foundRecipe);
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div className="containerMultiselect" key={category.id}>
           <Multiselect
             placeholder="Select an ingredient"
+            resetSelectedValues="false"
             displayValue="name"
-            onSelect={this.onSelect} // Function will trigger on select event
+            onSelect={this.onIngredientSelect} // Function will trigger on select event
             onRemove={this.onRemove} // Function will trigger on remove event
             options={this.getIng(category.id)}
+            ref={this.multiselectRef}
           />
           <div
             key={category.id}
@@ -124,8 +132,20 @@ class Kitchen extends Component {
       <div>
         <ul className="categoryList">{categoryList}</ul>
         <div className="recipeContainer">
-          <div className="ingredientBox"></div>
-          <div className="recipeBox">blabla</div>
+          <div className="ingredientBox">
+            {this.state.ingredientsList.map((ing, index) => {
+              return (
+                <span className="ingbox" key={index}>
+                  {ing.name}
+                  <span
+                    className="close"
+                    onClick={() => this.onRemove(ing.name)}
+                  ></span>
+                </span>
+              );
+            })}
+          </div>
+          <div className="recipeBox">{this.props.foundRecipe.step1}</div>
         </div>
       </div>
     );

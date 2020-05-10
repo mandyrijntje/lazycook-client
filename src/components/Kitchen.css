@@ -2,7 +2,6 @@
   width: 100%;
   max-width: 450px;
   padding: 20px;
-  height: 80vh;
   float: left;
   background-color: #e29b0b;
   margin: 1% 0 1% 0;
@@ -11,7 +10,17 @@
   justify-content: space-between;
   padding: 20px;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+.containerMultiselect:not(:first-child) {
+  margin-top: 10px;
+}
+.optionListContainer {
+  position: relative !important;
+}
+.optionContainer {
+  position: relative !important;
 }
 .containerMultiselect {
   display: flex;
@@ -66,25 +75,43 @@
   margin: 0;
 }
 
+.ingbox {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10%;
+  background-color: blue;
+  padding: 4px 8px;
+  margin: 0 5px 0 0;
+}
+
+.ingbox:hover {
+  cursor: pointers;
+
+  background-color: lightblue;
+}
+
 .optionContainer {
   background: white;
 }
 .recipeContainer {
-  overflow: hidden;
-  width: 45vw;
-  height: 80vh;
+  /* overflow: hidden; */
+  padding: 20px;
+  /* width: 600px; */
+  /* height: 80vh; */
+  min-width: 600px;
   float: right;
   background-color: #e29b0b;
   margin: 1% 0 1% 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.5% 0 0.5% 0;
 }
 
 .ingredientBox {
-  width: 90%;
-  height: 7.5%;
+  min-height: 25px;
+  width: 100%;
   float: right;
   background-color: white;
   margin: 1.5% 0 1.5% 0;
@@ -92,12 +119,35 @@
   border-color: rgba(89, 105, 252, 0.2);
 }
 
+.chip {
+  display: none;
+}
+
 .recipeBox {
-  width: 90%;
-  height: 87%;
+  width: 100%;
   float: right;
+  min-height: 300px;
   background-color: blue;
   margin: 1.5% 0 1.5% 0;
   border-style: solid;
   border-color: rgba(255, 255, 255, 0.2);
+}
+
+.close {
+  height: 18px;
+  width: 18px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.close:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: "\d7";
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
 }

@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 html,
@@ -15,7 +18,13 @@ body {
 }
 
 @media screen and (max-width: 600px) {
-  .footer-part {
+  .page-footer {
     display: none;
   }
+}
+
+.page-footer {
+  bottom: 0;
+  align-self: flex-end;
+  position: relative;
 }
