@@ -1,20 +1,39 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import EditRecipeFormContainer from './EditRecipeFormContainer'
 import "./RecipeCard.css";
 
 export default class RecipeCard extends Component {
+
+  state = {
+    showForm: false
+  };
+
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
   render() {
-    // console.log(
-    //   `CARD USER`,
-    //   this.props.user,
-    //   this.props
-    // );
     const now = new Date();
     const updated = new Date(this.props.recipe.updatedAt);
     const hours = Math.abs(now - updated) / 36e5;
 
     return (
       <div className="col-lg-6 col-md-6 col-12" key={this.props.recipe.id}>
+        <div>
+            <button
+              className="btn btn-dark"
+              onClick={() => this.toggleForm()}
+            >
+              Edit
+            </button>
+
+            {this.state.showForm && (
+              <EditRecipeFormContainer
+                recipe={this.props.recipe}
+                toggleForm={this.toggleForm}
+              />
+            )}
+          </div>
         <h1 className="text-center">
           <Link to={`/recipe/${this.props.recipe.id}`}>
             {this.props.recipe.name}
@@ -28,7 +47,6 @@ export default class RecipeCard extends Component {
           </Link>
         </p>
         <h3 className="text-center">Ingredients</h3>
-        {/* how do I relate recipe to ingredients? */}
         <ul className="text-center">
           {this.props.recipe.ingredients.map((ingredient) => {
             return <li key={ingredient.id}>{ingredient.name}</li>;

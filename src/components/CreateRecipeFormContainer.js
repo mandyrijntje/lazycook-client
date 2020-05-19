@@ -28,24 +28,14 @@ class CreateRecipeFormContainer extends React.Component {
   };
 
   onChange = event => {
-    // console.log(
-    //   "do i get called?",
-    //   event.target,
-    //   event.target.value,
-    //   event.target.name
-    // );
+
     const tempEvent = event.nativeEvent;
     this.setState({
       [tempEvent.target.name]: tempEvent.target.value
     });
   };
   onCheck = event => {
-    // console.log(
-    //   "do i get called?",
-    //   event.target,
-    //   event.target.checked,
-    //   event.target.name
-    // );
+
 
     this.setState({
       [event.target.name]: event.target.checked
@@ -53,7 +43,6 @@ class CreateRecipeFormContainer extends React.Component {
   };
 
   onSelect = theNewIngredientArray => {
-    console.log(theNewIngredientArray)
     this.setState({
       ...this.state,
       ingredients: theNewIngredientArray
@@ -82,7 +71,6 @@ class CreateRecipeFormContainer extends React.Component {
     });
   };
   render() {
-    // console.log("render of CRFC ", this.state);
 
     return (
       <div>

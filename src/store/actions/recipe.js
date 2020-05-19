@@ -13,17 +13,19 @@ export const findRecipe = (data, history) => (dispatch, getState) => {
   //console.log(data);
   const state = getState();
   const { userLogState } = state;
-  return request
-    .post(`${baseUrl}/kitchen/recipe`)
-    .set("Authorization", `Bearer ${userLogState.jwt}`)
-    .send({ ingredients: data, userId: userLogState.id })
-    .then((response) => {
-      console.log('please show me', response.body);
-      const action = foundRecipe(response.body);
-      dispatch(action);
-    })
-    // .then(() => history.push("/profile"))
-    .catch(console.error);
+  return (
+    request
+      .post(`${baseUrl}/kitchen/recipe`)
+      .set("Authorization", `Bearer ${userLogState.jwt}`)
+      .send({ ingredients: data, userId: userLogState.id })
+      .then((response) => {
+        console.log("please show me", response.body);
+        const action = foundRecipe(response.body);
+        dispatch(action);
+      })
+      // .then(() => history.push("/profile"))
+      .catch(console.error)
+  );
 };
 
 function allRecipes(recipeData) {
@@ -99,7 +101,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
 //   };
 // }
 
-export function updateRecipe(id, update, history) {
+export const updateRecipe = (id, update, history) => {
   return async function (dispatch, getState) {
     const state = getState();
 
@@ -111,12 +113,13 @@ export function updateRecipe(id, update, history) {
         .send({ ...update, userId: userLogState.id });
       const action = userRecipes(response.body);
 
-      dispatch(action).then(() => history.push("/profile"));
+      dispatch(action);
+      history.push("/profile");
     } catch (error) {
       console.error(error);
     }
   };
-}
+};
 
 export const uniqueRecipeDelete = (id) => ({
   type: "RECIPE_DELETE_SUCCESS",

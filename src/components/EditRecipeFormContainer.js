@@ -13,19 +13,20 @@ class EditRecipeFormContainer extends Component {
     this.props.getIngredients();
   }
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
 
     // console.log("look at me", this.state.recipe);
     this.props
       .updateRecipe(this.state.recipe.id, this.state.recipe, this.props.history)
+      .then(this.props.toggleForm)
       .then(this.props.history.push("/profile"));
   };
 
   onDelete = () => {
     this.props.deleteRecipe(this.state.recipe.id);
   };
-  onChange = event => {
+  onChange = (event) => {
     const tempEvent = event.nativeEvent;
 
     // console.log(event.nativeEvent);
@@ -39,18 +40,18 @@ class EditRecipeFormContainer extends Component {
     // console.log(this.state.recipe);
   };
 
-  onSelect = theNewIngredientArray => {
+  onSelect = (theNewIngredientArray) => {
     // console.log(theNewIngredientArray);
     const updatedIngredientsObject = {
       ...this.state.recipe,
-      ingredients: theNewIngredientArray
+      ingredients: theNewIngredientArray,
     };
 
     this.setState({ recipe: updatedIngredientsObject });
     // console.log(this.state.recipe);
   };
 
-  onCheck = event => {
+  onCheck = (event) => {
     // console.log(
     //   "do i get called?",
     //   event.target,
@@ -59,7 +60,7 @@ class EditRecipeFormContainer extends Component {
     // );
 
     this.setState({
-      [event.target.name]: event.target.checked
+      [event.target.name]: event.target.checked,
     });
   };
 
@@ -77,7 +78,7 @@ class EditRecipeFormContainer extends Component {
       isVegan: false,
       isVegetarian: false,
       hasNuts: false,
-      hasDairy: false
+      hasDairy: false,
     };
     this.setState({ recipe: resetRecipe });
   };
@@ -106,14 +107,14 @@ class EditRecipeFormContainer extends Component {
 function mapStateToProps(state) {
   // console.log("what is my state", state);
   return {
-    ingredients: state.ingredient.all
+    ingredients: state.ingredient.all,
   };
 }
 const mapDispatchToProps = {
   updateRecipe,
   deleteRecipe,
   getIngredients,
-  getUser
+  getUser,
 };
 
 export default withRouter(

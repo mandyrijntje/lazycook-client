@@ -103,7 +103,7 @@ class Kitchen extends Component {
     return arr;
   };
   render() {
-    console.log(this.props.foundRecipe);
+    // console.log(this.props.foundRecipe);
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div className="containerMultiselect" key={category.id}>

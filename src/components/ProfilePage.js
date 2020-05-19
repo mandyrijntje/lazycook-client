@@ -34,7 +34,7 @@ class ProfilePage extends Component {
           <p>Welcome {this.props.email}!</p>
           <CreateRecipeFormContainer user={this.props.user} />
           <h1>My Recipes</h1>
-          <div className="row mt-5">
+          <div className=" mt-5">
             <ProfileRecipes
               user={this.props.user}
               recipes={this.props.userRecipes}
