@@ -3,20 +3,26 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
-import { findRecipe } from "../store/actions/recipe";
+import { findRecipe, getTipRecipe } from "../store/actions/recipe";
 import { getUser } from "../store/actions/user";
-import { getIngredientsForCategory } from "../store/actions/ingredient";
+import {
+  getIngredientsForCategory,
+  getIngredients,
+} from "../store/actions/ingredient";
 
 class Kitchen extends Component {
   multiselectRef = React.createRef();
   state = {
     toggled: false,
     ingredientsList: [],
+    allIngredients: [],
+    tipIngredient: "",
   };
   componentDidMount() {
     document.body.addEventListener("click", (event) =>
       this.handleUnClick(event)
     );
+    this.props.getIngredients();
     // console.log("hi", this.props.databaseIngredients);
   }
 
@@ -36,10 +42,33 @@ class Kitchen extends Component {
       {
         ingredientsList: tempArr,
       },
-      () =>
-        this.props.findRecipe(this.state.ingredientsList, this.props.history)
+      this.findMyRecipe
+
       // .then(() => this.props.getUser())
     );
+  };
+
+  findMyRecipe = async () => {
+    console.log(this.state.ingredientsList);
+    await this.props.findRecipe(this.state.ingredientsList, this.props.history);
+    let temp = this.props.allIngredients;
+    console.log(temp);
+    for (let i = 0; i < temp.length; i++) {
+      if (
+        this.state.ingredientsList.find((ing) => ing.name === temp[i].name) ===
+        undefined
+      ) {
+        await this.props.getTipRecipe(
+          [...this.state.ingredientsList, temp[i]],
+          this.props.history
+        );
+        console.log("dododododo", this.props.tipRecipe);
+        if (!this.props.tipRecipe.hasOwnProperty("dataValues")) {
+          this.setState({ ...this.state, tipIngredient: temp[i] });
+          return;
+        }
+      }
+    }
   };
 
   onCategorySelect = (categoryId) => {
@@ -135,7 +164,7 @@ class Kitchen extends Component {
           <div className="ingredientBox">
             {this.state.ingredientsList.map((ing, index) => {
               return (
-                <span className="bigbox">
+                <span className="bigbox" key={index}>
                   <span className="ingbox" key={index}>
                     {ing.name}
                   </span>
@@ -155,6 +184,12 @@ class Kitchen extends Component {
               alt=""
             />
           </div>
+          {this.props.tipRecipe.length === 0 ? null : (
+            <div className="tipBox">
+              add this ingredient : {this.state.tipIngredient.name} to get{" "}
+              {this.props.tipRecipe.name}
+            </div>
+          )}
         </div>
       </div>
     );
@@ -163,14 +198,18 @@ class Kitchen extends Component {
 
 function mapStateToProps(state) {
   return {
+    allIngredients: state.ingredient.all,
+    tipRecipe: state.recipe.tipRecipe,
     foundRecipe: state.recipe.foundRecipe,
     categoryIngredients: state.ingredient.categoryIngredients,
   };
 }
 const mapDispatchToProps = {
   findRecipe,
+  getTipRecipe,
   getIngredientsForCategory,
   getUser,
+  getIngredients,
 };
 
 export default withRouter(

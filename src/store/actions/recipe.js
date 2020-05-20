@@ -2,6 +2,28 @@ import request from "superagent";
 
 const baseUrl = "http://localhost:4000";
 
+function tipRecipe(tip) {
+  return {
+    type: "TIP_RECIPE",
+    payload: tip,
+  };
+}
+
+export const getTipRecipe = (data, history) => (dispatch, getState) => {
+  console.log("getipdata", data);
+  const state = getState();
+  const { userLogState } = state;
+  return request
+    .post(`${baseUrl}/kitchen/recipe`)
+    .set("Authorization", `Bearer ${userLogState.jwt}`)
+    .send({ ingredients: data, userId: userLogState.id })
+    .then((response) => {
+      console.log("getrecipe action", response.body);
+      dispatch(tipRecipe(response.body));
+    })
+    .catch(console.error);
+};
+
 function foundRecipe(uniqueRecipe) {
   return {
     type: "FOUND_RECIPE",
@@ -10,22 +32,19 @@ function foundRecipe(uniqueRecipe) {
 }
 
 export const findRecipe = (data, history) => (dispatch, getState) => {
-  //console.log(data);
+  console.log("boboboo", data);
   const state = getState();
   const { userLogState } = state;
-  return (
-    request
-      .post(`${baseUrl}/kitchen/recipe`)
-      .set("Authorization", `Bearer ${userLogState.jwt}`)
-      .send({ ingredients: data, userId: userLogState.id })
-      .then((response) => {
-        console.log("please show me", response.body);
-        const action = foundRecipe(response.body);
-        dispatch(action);
-      })
-      // .then(() => history.push("/profile"))
-      .catch(console.error)
-  );
+  return request
+    .post(`${baseUrl}/kitchen/recipe`)
+    .set("Authorization", `Bearer ${userLogState.jwt}`)
+    .send({ ingredients: data, userId: userLogState.id })
+    .then((response) => {
+      console.log("findrecipe action", response.body);
+      const action = foundRecipe(response.body);
+      dispatch(action);
+    })
+    .catch(console.error);
 };
 
 function allRecipes(recipeData) {
