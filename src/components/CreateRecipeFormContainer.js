@@ -90,7 +90,6 @@ class CreateRecipeFormContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("what is my state", state);
   return {
     ingredients: state.ingredient.all
   };

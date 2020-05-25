@@ -15,7 +15,6 @@ export const getIngredients = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/ingredient`)
       .then((response) => {
-        // console.log(`get ings working`)
         const action = allIngredients(response.body.ingredients);
         dispatch(action);
       })
@@ -36,7 +35,6 @@ export const getCategories = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/category`)
       .then((response) => {
-        // console.log(`get cats working`)
         const action = allCategories(response.body.categories);
         dispatch(action);
       })
@@ -60,7 +58,6 @@ export const getIngredientsForCategory = (categoryId) => (
   request
     .get(`${baseUrl}/category/${categoryId}/ingredient`)
     .then((response) => {
-      // console.log(`get ing4cats working`);
       const action = categoryIngredients(response.body);
       dispatch(action);
     })

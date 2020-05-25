@@ -10,7 +10,6 @@ function tipRecipe(tip) {
 }
 
 export const getTipRecipe = (data, history) => (dispatch, getState) => {
-  console.log("getipdata", data);
   const state = getState();
   const { userLogState } = state;
   return request
@@ -18,7 +17,6 @@ export const getTipRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ingredients: data, userId: userLogState.id })
     .then((response) => {
-      console.log("getrecipe action", response.body);
       dispatch(tipRecipe(response.body));
     })
     .catch(console.error);
@@ -32,7 +30,6 @@ function foundRecipe(uniqueRecipe) {
 }
 
 export const findRecipe = (data, history) => (dispatch, getState) => {
-  console.log("boboboo", data);
   const state = getState();
   const { userLogState } = state;
   return request
@@ -40,7 +37,6 @@ export const findRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ingredients: data, userId: userLogState.id })
     .then((response) => {
-      console.log("findrecipe action", response.body);
       const action = foundRecipe(response.body);
       dispatch(action);
     })
@@ -60,7 +56,6 @@ export const getRecipes = () => (dispatch, getState) => {
     request
       .get(`${baseUrl}/recipe`)
       .then((response) => {
-        // console.log(`get recipes working`);
         const action = allRecipes(response.body);
         dispatch(action);
       })
@@ -105,7 +100,6 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then((response) => {
-      // console.log(response.body);
       const action = userRecipes(response.body);
       dispatch(action);
     })

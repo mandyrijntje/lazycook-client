@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import EditRecipeFormContainer from './EditRecipeFormContainer'
+import EditRecipeFormContainer from "./EditRecipeFormContainer";
 import "./RecipeCard.css";
 
 export default class RecipeCard extends Component {
-
   state = {
-    showForm: false
+    showForm: false,
   };
 
   toggleForm = () => {
@@ -20,20 +19,17 @@ export default class RecipeCard extends Component {
     return (
       <div className="col-lg-6 col-md-6 col-12" key={this.props.recipe.id}>
         <div>
-            <button
-              className="btn btn-dark"
-              onClick={() => this.toggleForm()}
-            >
-              Edit
-            </button>
+          <button className="btn btn-dark" onClick={() => this.toggleForm()}>
+            Edit
+          </button>
 
-            {this.state.showForm && (
-              <EditRecipeFormContainer
-                recipe={this.props.recipe}
-                toggleForm={this.toggleForm}
-              />
-            )}
-          </div>
+          {this.state.showForm && (
+            <EditRecipeFormContainer
+              recipe={this.props.recipe}
+              toggleForm={this.toggleForm}
+            />
+          )}
+        </div>
         <h1 className="text-center">
           <Link to={`/recipe/${this.props.recipe.id}`}>
             {this.props.recipe.name}

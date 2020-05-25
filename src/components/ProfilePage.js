@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 
 class ProfilePage extends Component {
   componentDidMount() {
-    // console.log("triggered");
     if (this.props.userLogState.jwt) {
       this.props.getUser(this.props.userLogState.id);
       this.props.getRecipesForUser(this.props.userLogState.id);
@@ -15,7 +14,6 @@ class ProfilePage extends Component {
   }
 
   render() {
-    // console.log(this.props);
     if (!this.props.userLogState.jwt) {
       return (
         <p>You must log in to access this highly confidential material!</p>

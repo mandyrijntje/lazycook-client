@@ -16,7 +16,6 @@ class AllRecipes extends Component {
 
   render() {
     if (this.state.load === false && this.props.recipes.recipes !== undefined) {
-      // console.log(this.props.recipes.recipes, "this this");
       const recipesCopy = [...this.props.recipes.recipes];
       const sortedRecipes = recipesCopy.sort(
         (a, b) => b.createdAt - a.createdAt

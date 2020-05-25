@@ -13,7 +13,6 @@ class KitchenContainer extends React.Component {
   }
 
   render() {
-    // console.log(this.props.ingredients)
     return (
       <div>
         <Kitchen

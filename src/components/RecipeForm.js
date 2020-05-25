@@ -3,7 +3,6 @@ import React from "react";
 import MultiSelect from "react-multi-select-component";
 
 export default function RecipeForm(props) {
-  // console.log(props);
   const options = props.databaseIngredients.map((ingredient) => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });

@@ -24,28 +24,29 @@ function App() {
       <Route exact path="/profile" component={ProfilePage} />
       <Route exact path="/recipe" component={AllRecipes} />
       <Route exact path="/recipe/:id" component={RecipeCard} />
-      <div className="page-footer d-flex flex-row w-100 font-small bg-info text-white pt-2 ">
+      <div className="page-footer d-flex flex-row w-100 font-small bg-info text-white pt-2 mb-0 position-fixed pb-1">
         <div className="container-fluid text-center text-md-center">
           <div className="row">
-            <div className="footer-part col-md-6 mt-md-0 mt-1 text-left">
+            <div className="footer-part col-md-4 mt-md-0 mt-1 text-left">
               <span>
                 0800 - 1700 CET • Weekdays (Weekends are for relaxation)
               </span>
             </div>
-            <div className="footer-part col-md-6 mb-md-0 mb-0 text-right">
-              <span>
-                55 Straatlaan, Amsterdam • 06262-62626 • info@lazycook.com
-              </span>
-            </div>
-          </div>
-        </div>
-        <div className="footer-copyright text-center pb-1">
+            <div className="footer-part col-md-3 mb-md-0 mb-0 text-right">
           © 2020 copyright
           <a className="text-white" href="https://www.github.com/messmonte">
             {" "}
             www.lazycook.com
           </a>
         </div>
+            <div className="footer-part col-md-5 mb-md-0 mb-0 text-right">
+              <span>
+                55 Straatlaan, Amsterdam • 06262-62626 • info@lazycook.com
+              </span>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   );

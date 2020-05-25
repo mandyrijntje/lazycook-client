@@ -15,8 +15,6 @@ class EditRecipeFormContainer extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-
-    // console.log("look at me", this.state.recipe);
     this.props
       .updateRecipe(this.state.recipe.id, this.state.recipe, this.props.history)
       .then(this.props.toggleForm)
@@ -28,37 +26,22 @@ class EditRecipeFormContainer extends Component {
   };
   onChange = (event) => {
     const tempEvent = event.nativeEvent;
-
-    // console.log(event.nativeEvent);
     const { value, name } = tempEvent.target;
-    // const value = event.target.value
-    // const name = event.target.name
-
     const recipe = { ...this.state.recipe, [name]: value };
 
     this.setState({ recipe: recipe });
-    // console.log(this.state.recipe);
   };
 
   onSelect = (theNewIngredientArray) => {
-    // console.log(theNewIngredientArray);
     const updatedIngredientsObject = {
       ...this.state.recipe,
       ingredients: theNewIngredientArray,
     };
 
     this.setState({ recipe: updatedIngredientsObject });
-    // console.log(this.state.recipe);
   };
 
   onCheck = (event) => {
-    // console.log(
-    //   "do i get called?",
-    //   event.target,
-    //   event.target.checked,
-    //   event.target.name
-    // );
-
     this.setState({
       [event.target.name]: event.target.checked,
     });
@@ -84,7 +67,6 @@ class EditRecipeFormContainer extends Component {
   };
 
   render() {
-    // console.log("why", this.state.recipe);
     return (
       <div>
         <RecipeForm
@@ -105,7 +87,6 @@ class EditRecipeFormContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  // console.log("what is my state", state);
   return {
     ingredients: state.ingredient.all,
   };

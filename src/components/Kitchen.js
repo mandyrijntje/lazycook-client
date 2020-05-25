@@ -23,7 +23,6 @@ class Kitchen extends Component {
       this.handleUnClick(event)
     );
     this.props.getIngredients();
-    // console.log("hi", this.props.databaseIngredients);
   }
 
   onChange = (event) => {
@@ -43,16 +42,12 @@ class Kitchen extends Component {
         ingredientsList: tempArr,
       },
       this.findMyRecipe
-
-      // .then(() => this.props.getUser())
     );
   };
 
   findMyRecipe = async () => {
-    console.log(this.state.ingredientsList);
     await this.props.findRecipe(this.state.ingredientsList, this.props.history);
     let temp = this.props.allIngredients;
-    console.log(temp);
     for (let i = 0; i < temp.length; i++) {
       if (
         this.state.ingredientsList.find((ing) => ing.name === temp[i].name) ===
@@ -62,7 +57,6 @@ class Kitchen extends Component {
           [...this.state.ingredientsList, temp[i]],
           this.props.history
         );
-        console.log("dododododo", this.props.tipRecipe);
         if (!this.props.tipRecipe.hasOwnProperty("dataValues")) {
           this.setState({ ...this.state, tipIngredient: temp[i] });
           return;
@@ -92,7 +86,6 @@ class Kitchen extends Component {
 
   handleUnClick = (event) => {
     if (this.state.toggled === true) {
-      // console.log(event.target);
       document
         .querySelector(".changeIndex-3")
         .childNodes[0].classList.toggle("changeIndex-2"); //chilled nodes = all children of this element
@@ -106,10 +99,10 @@ class Kitchen extends Component {
     }
   };
 
-  onRemove(ingToBeRemoved) {}
+  
+  
 
   getIng = (id) => {
-    // console.log(id);
     let arr = [];
     if (this.props.databaseIngredients.length > 0) {
       this.props.databaseIngredients.forEach((item) => {
@@ -128,11 +121,9 @@ class Kitchen extends Component {
         },
       ];
     }
-    // console.log(arr);
     return arr;
   };
   render() {
-    // console.log(this.props.foundRecipe);
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div className="containerMultiselect" key={category.id}>
@@ -141,7 +132,6 @@ class Kitchen extends Component {
             resetSelectedValues="false"
             displayValue="name"
             onSelect={this.onIngredientSelect} // Function will trigger on select event
-            onRemove={this.onRemove} // Function will trigger on remove event
             options={this.getIng(category.id)}
             ref={this.multiselectRef}
           />
@@ -155,8 +145,7 @@ class Kitchen extends Component {
         </div>
       );
     });
-    //
-    // console.log("category ing options in kitchen", options);
+
     return (
       <div>
         <ul className="categoryList">{categoryList}</ul>
@@ -170,7 +159,7 @@ class Kitchen extends Component {
                   </span>
                   <span
                     className="close"
-                    onClick={() => this.onRemove(ing.name)}
+                    onClick={() => this.onRemove(ing)} // Function will trigger on remove event
                   ></span>
                 </span>
               );
