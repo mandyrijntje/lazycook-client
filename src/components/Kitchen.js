@@ -11,7 +11,7 @@ import {
 } from "../store/actions/ingredient";
 
 class Kitchen extends Component {
-  multiselectRef = React.createRef();
+  multiselectRef = []
   state = {
     toggled: false,
     ingredientsList: [],
@@ -23,6 +23,7 @@ class Kitchen extends Component {
       this.handleUnClick(event)
     );
     this.props.getIngredients();
+    this.props.categories.forEach(() => this.multiselectRef.push(React.createRef()));
   }
 
   onChange = (event) => {
@@ -78,7 +79,6 @@ class Kitchen extends Component {
       .classList.toggle("changeIndex-1");
     event.target.parentElement.querySelector(".searchBox").focus();
     event.target.parentElement.classList.toggle("changeIndex-3");
-    // this.props.getIngredientsForCategory(id);
     this.setState({ toggled: true });
   };
 
@@ -98,29 +98,41 @@ class Kitchen extends Component {
   };
 
   onRemove = (ingToBeDeleted) => {
+    console.log(this.multiselectRef)
+    this.multiselectRef[ingToBeDeleted.catIndex].current.resetSelectedValues();
+    // let arr = [];
     const filteredArr = this.state.ingredientsList.filter(
       (item) => item.id !== ingToBeDeleted.id
     );
     if (filteredArr.length === 0) {
       this.props.resetRecipe();
     }
-
     this.setState(
       {
         ingredientsList: filteredArr,
       },
       this.findMyRecipe
-    );
-  };
+    )
+  //   this.props.databaseIngredients.forEach((item) => {
+  //     if (item.categoryId === ingToBeDeleted.categoryd && !this.props.categoryIngredients.includes(ingToBeDeleted)) {
+  //       arr.push({
+  //         id: item.id,
+  //         name: item.name,
+  //       })}else {
+  //         return null;
+  //       }
 
-  getIng = (id) => {
+  //   return arr;
+  // }
+  }
+  getIng = (id, index) => {
     let arr = [];
     if (this.props.databaseIngredients.length > 0) {
       this.props.databaseIngredients.forEach((item) => {
         if (item.categoryId === id) {
           arr.push({
             id: item.id,
-            name: item.name,
+            name: item.name, catIndex: index
           });
         }
       });
@@ -143,8 +155,8 @@ class Kitchen extends Component {
             resetSelectedValues="false"
             displayValue="name"
             onSelect={this.onIngredientSelect} // Function will trigger on select event
-            options={this.getIng(category.id)}
-            ref={this.multiselectRef}
+            options={this.getIng(category.id, index)}
+            ref={this.multiselectRef[index]}
           />
           <div
             key={category.id}

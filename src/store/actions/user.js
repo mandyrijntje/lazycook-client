@@ -5,17 +5,24 @@ const baseUrl = "http://localhost:4000";
 function logUserIn(loginData) {
   return {
     type: "JWT",
-    payload: loginData
+    payload: loginData,
   };
 }
 
-export const login = (email, password, history) => dispatch => {
+export const login = (email, password, history) => (dispatch) => {
   request
     .post(`${baseUrl}/login`)
     .send({ email: email, password: password })
-    .then(response => {
-      const action = logUserIn(response.body);
+    .then((response) => {
+      const body = response.body;
+      const action = logUserIn(body);
+      const uniqueUser = {
+        id: body.id,
+        email: body.email,
+        recipes: body.recipes || [],
+      };
       dispatch(action);
+      dispatch(singleUser(uniqueUser));
       localStorage.setItem("user", JSON.stringify(response.body));
     })
     .then(() => history.push("/"))
@@ -25,15 +32,15 @@ export const login = (email, password, history) => dispatch => {
 function createUser(email) {
   return {
     type: "CREATE_USER",
-    payload: email
+    payload: email,
   };
 }
 
-export const signup = (email, password, history) => dispatch => {
+export const signup = (email, password, history) => (dispatch) => {
   request
     .post(`${baseUrl}/users`)
     .send({ email: email, password: password })
-    .then(response => {
+    .then((response) => {
       const action = createUser(response.body);
       dispatch(action);
     })
@@ -44,24 +51,24 @@ export const signup = (email, password, history) => dispatch => {
 function singleUser(uniqueUser) {
   return {
     type: "UNIQUE_USER",
-    payload: uniqueUser
+    payload: uniqueUser,
   };
 }
 
-export const getUser = userParamId => (dispatch, getState) => {
+export const getUser = (userParamId) => (dispatch, getState) => {
   if (!userParamId) {
     const state = getState();
     userParamId = state.userLogState.id;
   }
   return request
-    .get(`${baseUrl}/users/`+userParamId)
-    .then(response => {
+    .get(`${baseUrl}/users/` + userParamId)
+    .then((response) => {
       const body = response.body;
 
       const uniqueUser = {
         id: body.id,
         email: body.email,
-        recipes: body.recipes
+        recipes: body.recipes,
       };
       const action = singleUser(uniqueUser);
       dispatch(action);
@@ -72,6 +79,6 @@ export const getUser = userParamId => (dispatch, getState) => {
 export function logout() {
   return {
     type: "LOG_OUT",
-    payload: ""
+    payload: "",
   };
 }
