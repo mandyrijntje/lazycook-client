@@ -22,6 +22,17 @@ export const getTipRecipe = (data, history) => (dispatch, getState) => {
     .catch(console.error);
 };
 
+function resettedRecipe(tt){
+  return {
+    type: "TIP_RECIPE",
+    payload: tt
+  };
+}
+
+export const resetRecipe = (data, history) => (dispatch) => {
+      dispatch(resettedRecipe([]));
+};
+
 function foundRecipe(uniqueRecipe) {
   return {
     type: "FOUND_RECIPE",

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
-import { findRecipe, getTipRecipe } from "../store/actions/recipe";
+import { findRecipe, getTipRecipe, resetRecipe } from "../store/actions/recipe";
 import { getUser } from "../store/actions/user";
 import {
   getIngredientsForCategory,
@@ -53,10 +53,12 @@ class Kitchen extends Component {
         this.state.ingredientsList.find((ing) => ing.name === temp[i].name) ===
         undefined
       ) {
-        await this.props.getTipRecipe(
-          [...this.state.ingredientsList, temp[i]],
-          this.props.history
-        );
+        if (this.state.ingredientsList.length !== 0) {
+          await this.props.getTipRecipe(
+            [...this.state.ingredientsList, temp[i]],
+            this.props.history
+          );
+        }
         if (!this.props.tipRecipe.hasOwnProperty("dataValues")) {
           this.setState({ ...this.state, tipIngredient: temp[i] });
           return;
@@ -68,10 +70,6 @@ class Kitchen extends Component {
   onCategorySelect = (categoryId) => {
     this.props.getIngredientsForCategory(categoryId);
   };
-
-  onCategorySearch = (event) => {
-    event.preventDefault();
-  }; //what happens here?
 
   handleClick = (event) => {
     event.target.parentElement.childNodes[0].classList.toggle("changeIndex-2");
@@ -99,8 +97,21 @@ class Kitchen extends Component {
     }
   };
 
-  
-  
+  onRemove = (ingToBeDeleted) => {
+    const filteredArr = this.state.ingredientsList.filter(
+      (item) => item.id !== ingToBeDeleted.id
+    );
+    if (filteredArr.length === 0) {
+      this.props.resetRecipe();
+    }
+
+    this.setState(
+      {
+        ingredientsList: filteredArr,
+      },
+      this.findMyRecipe
+    );
+  };
 
   getIng = (id) => {
     let arr = [];
@@ -199,6 +210,7 @@ const mapDispatchToProps = {
   getIngredientsForCategory,
   getUser,
   getIngredients,
+  resetRecipe,
 };
 
 export default withRouter(
