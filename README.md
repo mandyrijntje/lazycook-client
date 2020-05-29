@@ -10,7 +10,7 @@ PROS: Will teach you how to make toast
 
 ### For Users
 
-- Kitchen: Generates recipes based on ingredients selected by you <br>(Beta version, can do bread-tomato-butter-beans combinations for now)
+- Kitchen: Generates recipes based on ingredients selected by you <br>(Beta version, can do limited ingredient combinations for now. Go to the 'Recipes' link in the navigation bar and you will find some ingredient combination ideas there that you can test. It's a bit round-the-bush, but I'm expanding the database with my limited culinary talent so bear with me.)
 - Store: Users can add optional ingredients to their cart to shop <br>(Functionality to be created)
 - Recipes: Displays a list of recipes by users of the site
 - Profile: A user can see their recipes in a list, and can create a recipe
