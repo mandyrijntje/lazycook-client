@@ -6,29 +6,38 @@ import { connect } from "react-redux";
 
 class AllRecipes extends Component {
   state = {
-    load: true
+    load: true,
   };
-  async componentDidMount() {
-    await this.props.getUsers();
-    await this.props.getRecipes();
-    this.setState({ load: false });
+  componentDidMount() {
+    this.props.getUsers();
+    this.props.getRecipes();
   }
 
   render() {
-    if (this.state.load === false && this.props.recipes.recipes !== undefined) {
+    if (this.props.users && this.props.recipes.recipes !== undefined) {
+      // console.log("usersssssss", this.props.users);
+      // console.log("recips", this.props.recipes);
       const recipesCopy = [...this.props.recipes.recipes];
       const sortedRecipes = recipesCopy.sort(
         (a, b) => b.createdAt - a.createdAt
       );
-      return sortedRecipes.map(recipe => {
+      return sortedRecipes.map((recipe) => {
         const recipeAuthorId = recipe.userId;
-        const recipeAuthor = this.props.users.find(
-          user => user.id === recipeAuthorId
-        );
+        let recipeAuthor = this.props.users[0];
+        if (this.props.users.length !== 1) {
+          recipeAuthor = this.props.users.find(
+            (user) => user.id === recipeAuthorId
+          );
+        }
 
         return (
           <div className="d-flex justify-content-center mb-5" key={recipe.id}>
-            <RecipeCard user={recipeAuthor} recipe={recipe} id={recipe.id} />
+            <RecipeCard
+              user={recipeAuthor}
+              recipe={recipe}
+              id={recipe.id}
+              userLogState={this.props.userLogState}
+            />
           </div>
         );
       });
@@ -40,7 +49,8 @@ class AllRecipes extends Component {
 function mapStateToProps(state) {
   return {
     users: state.users.all,
-    recipes: state.recipe.all
+    userLogState: state.userLogState,
+    recipes: state.recipe.all,
   };
 }
 const mapDispatchToProps = { getRecipes, getUsers };

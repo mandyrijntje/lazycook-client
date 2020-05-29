@@ -12,6 +12,8 @@ export default class RecipeCard extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
   render() {
+
+
     const now = new Date();
     const updated = new Date(this.props.recipe.updatedAt);
     const hours = Math.abs(now - updated) / 36e5;
@@ -19,9 +21,11 @@ export default class RecipeCard extends Component {
     return (
       <div className="col-lg-6 col-md-6 col-12" key={this.props.recipe.id}>
         <div>
-          <button className="btn btn-dark" onClick={() => this.toggleForm()}>
-            Edit
-          </button>
+          {this.props.user.id === this.props.userLogState.id ? (
+            <button className="btn btn-dark" onClick={() => this.toggleForm()}>
+              Edit
+            </button>
+          ) : null}
 
           {this.state.showForm && (
             <EditRecipeFormContainer

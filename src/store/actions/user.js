@@ -25,7 +25,7 @@ export const login = (email, password, history) => (dispatch) => {
       dispatch(singleUser(uniqueUser));
       localStorage.setItem("user", JSON.stringify(response.body));
     })
-    .then(() => history.push("/"))
+    // .then(() => history.push("/"))
     .catch(console.error);
 };
 

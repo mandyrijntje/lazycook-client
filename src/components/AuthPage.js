@@ -16,7 +16,7 @@ class AuthPage extends React.Component {
         </div>
       );
     }
-    return <Redirect to="/profile" />;
+    return <Redirect to="/" />;
   }
 }
 function mapStateToProps(state) {
