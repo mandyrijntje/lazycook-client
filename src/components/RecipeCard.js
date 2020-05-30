@@ -12,8 +12,6 @@ export default class RecipeCard extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
   render() {
-
-
     const now = new Date();
     const updated = new Date(this.props.recipe.updatedAt);
     const hours = Math.abs(now - updated) / 36e5;
@@ -35,9 +33,9 @@ export default class RecipeCard extends Component {
           )}
         </div>
         <h1 className="text-center">
-          <Link to={`/recipe/${this.props.recipe.id}`}>
-            {this.props.recipe.name}
-          </Link>
+          {/* <Link to={`/recipe/${this.props.recipe.id}`}> */}
+          {this.props.recipe.name}
+          {/* </Link> */}
         </h1>
         <p className="text-center">
           {" "}

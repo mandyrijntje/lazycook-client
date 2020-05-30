@@ -22,10 +22,10 @@ export const getTipRecipe = (data, history) => (dispatch, getState) => {
     .catch(console.error);
 };
 
-function resettedRecipe(tt){
+function resettedRecipe(val){
   return {
     type: "TIP_RECIPE",
-    payload: tt
+    payload: val
   };
 }
 

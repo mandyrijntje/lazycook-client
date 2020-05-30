@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
@@ -11,20 +12,22 @@ import {
 } from "../store/actions/ingredient";
 
 class Kitchen extends Component {
-  multiselectRef = []
+  multiselectRef = [];
   state = {
     toggled: false,
     ingredientsList: [],
     allIngredients: [],
     tipIngredient: "",
   };
-  componentDidMount() {
-    document.body.addEventListener("click", (event) =>
+  componentDidMount = async () => {
+    await document.body.addEventListener("click", (event) =>
       this.handleUnClick(event)
     );
-    this.props.getIngredients();
-    this.props.categories.forEach(() => this.multiselectRef.push(React.createRef()));
-  }
+    await this.props.getIngredients();
+    await this.props.categories.forEach(() =>
+      this.multiselectRef.push(React.createRef())
+    );
+  };
 
   onChange = (event) => {
     this.setState({
@@ -97,9 +100,18 @@ class Kitchen extends Component {
     }
   };
 
-  onRemove = (ingToBeDeleted) => {
-    console.log(this.multiselectRef)
-    this.multiselectRef[ingToBeDeleted.catIndex].current.resetSelectedValues();
+  onRemove = async (ingToBeDeleted) => {
+    console.log(ingToBeDeleted);
+    if (this.multiselectRef[ingToBeDeleted.catIndex]) {
+      console.log(
+        this.multiselectRef,
+        ingToBeDeleted.catIndex,
+        this.multiselectRef[ingToBeDeleted.catIndex].current
+      );
+      this.multiselectRef[
+        ingToBeDeleted.catIndex
+      ].current.resetSelectedValues();
+    }
     // let arr = [];
     const filteredArr = this.state.ingredientsList.filter(
       (item) => item.id !== ingToBeDeleted.id
@@ -112,19 +124,8 @@ class Kitchen extends Component {
         ingredientsList: filteredArr,
       },
       this.findMyRecipe
-    )
-  //   this.props.databaseIngredients.forEach((item) => {
-  //     if (item.categoryId === ingToBeDeleted.categoryd && !this.props.categoryIngredients.includes(ingToBeDeleted)) {
-  //       arr.push({
-  //         id: item.id,
-  //         name: item.name,
-  //       })}else {
-  //         return null;
-  //       }
-
-  //   return arr;
-  // }
-  }
+    );
+  };
   getIng = (id, index) => {
     let arr = [];
     if (this.props.databaseIngredients.length > 0) {
@@ -132,7 +133,8 @@ class Kitchen extends Component {
         if (item.categoryId === id) {
           arr.push({
             id: item.id,
-            name: item.name, catIndex: index
+            name: item.name,
+            catIndex: index,
           });
         }
       });
@@ -196,10 +198,18 @@ class Kitchen extends Component {
               alt=""
             />
           </div>
-          {this.props.tipRecipe.length === 0 ? null : (
+          {this.props.tipRecipe.length === 0 ? null : !this.props.tipRecipe ? (
             <div className="tipBox">
-              add this ingredient : {this.state.tipIngredient.name} to get{" "}
-              {this.props.tipRecipe.name}
+              Alas, no recipes for that combo yet. Need some magic? Create your
+              custom recipe <Link to={`/profile`}> here</Link>or shop for fresh
+              ingredients at the <Link to={`/store`}> store</Link>.
+            </div>
+          ) : (
+            <div className="tipBox">
+              Psst, add: {this.state.tipIngredient.name} to make{" "}
+              {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
+              {this.state.tipIngredient.name} at the{" "}
+              <Link to={`/store`}> store</Link>.
             </div>
           )}
         </div>
