@@ -111,7 +111,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then((response) => {
-      console.log("yeww", response.body);
+      // console.log("yeww", response.body);
       const action = userRecipes({
         user: userLogState,
         body: response.body,
@@ -122,12 +122,12 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .catch(console.error);
 };
 
-// function changeRecipe(newRecipe) {
-//   return {
-//     type: "CHANGE_RECIPE",
-//     payload: newRecipe
-//   };
-// }
+function changeRecipe(newRecipe) {
+  return {
+    type: "CHANGE_RECIPE",
+    payload: newRecipe,
+  };
+}
 
 export const updateRecipe = (id, update, history) => {
   return async function (dispatch, getState) {
@@ -139,10 +139,14 @@ export const updateRecipe = (id, update, history) => {
         .put(`${baseUrl}/recipe/${id}`)
         .set("Authorization", `Bearer ${userLogState.jwt}`)
         .send({ ...update, userId: userLogState.id });
-      const action = userRecipes(response.body);
+      console.log("its a me mario,", response.body);
+      const action = changeRecipe({
+        user: userLogState,
+        body: response.body,
+      });
 
       dispatch(action);
-      history.push("/profile");
+      // history.push("/profile");
     } catch (error) {
       console.error(error);
     }
@@ -163,7 +167,12 @@ export const deleteRecipe = (id) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .then((response) => {
       console.log("hey");
-      dispatch(uniqueRecipeDelete(id));
+      dispatch(
+        uniqueRecipeDelete({
+          user: userLogState,
+          body: id,
+        })
+      );
     })
     .catch(console.error);
 };

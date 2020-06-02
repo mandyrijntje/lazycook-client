@@ -149,7 +149,12 @@ class Kitchen extends Component {
     return arr;
   };
   render() {
-    console.log("rrr", this.state.tipIngredient, this.props.tipRecipe);
+    console.log(
+      "rrr",
+      this.state.tipIngredient,
+      this.props.tipRecipe,
+      this.props.foundRecipe
+    );
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div className="containerMultiselect" key={category.id}>
@@ -199,19 +204,28 @@ class Kitchen extends Component {
               alt=""
             />
           </div>
-          {this.props.tipRecipe.length === 0 ? null : !this.props.tipRecipe ? (
-            <div className="tipBox">
-              Alas, no recipes for that combo yet. Need some magic? Create your
-              custom recipe <Link to={`/profile`}> here</Link>or shop for fresh
-              ingredients at the <Link to={`/store`}> store</Link>.
-            </div>
+          {!this.props.foundRecipe.hasOwnProperty("dataValues") ? (
+            this.props.foundRecipe.length === 0 ? (
+              <div>You are new here.</div>
+            ) : this.props.tipRecipe.length === 0 ||
+              this.props.tipRecipe.hasOwnProperty("dataValues") ? (
+              <div className="tipBox">
+                No more ideas. Create your custom recipe{" "}
+                <Link to={`/profile`}> here </Link>or shop for fresh ingredients
+                at the <Link to={`/store`}> store</Link>.
+              </div>
+            ) : (
+              <div className="tipBox">
+                Psst, add: {this.state.tipIngredient.name} to make{" "}
+                {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
+                {this.state.tipIngredient.name} at the{" "}
+                <Link to={`/store`}> store</Link>.
+              </div>
+            )
+          ) : this.state.ingredientsList.length === 0? (
+            <div className="tipBox">You must be new here.</div>
           ) : (
-            <div className="tipBox">
-              Psst, add: {this.state.tipIngredient.name} to make{" "}
-              {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
-              {this.state.tipIngredient.name} at the{" "}
-              <Link to={`/store`}> store</Link>.
-            </div>
+            <div className="tipBox">Weird Combo</div>
           )}
         </div>
       </div>
