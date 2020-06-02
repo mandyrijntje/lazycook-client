@@ -149,6 +149,7 @@ class Kitchen extends Component {
     return arr;
   };
   render() {
+    console.log("rrr", this.state.tipIngredient, this.props.tipRecipe);
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div className="containerMultiselect" key={category.id}>

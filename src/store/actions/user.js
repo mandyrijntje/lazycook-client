@@ -16,13 +16,13 @@ export const login = (email, password, history) => (dispatch) => {
     .then((response) => {
       const body = response.body;
       const action = logUserIn(body);
-      const uniqueUser = {
-        id: body.id,
-        email: body.email,
-        recipes: body.recipes || [],
-      };
+      // const uniqueUser = {
+      //   id: body.id,
+      //   email: body.email,
+      //   recipes: body.recipes || [],
+      // };
       dispatch(action);
-      dispatch(singleUser(uniqueUser));
+      // dispatch(singleUser(uniqueUser));
       localStorage.setItem("user", JSON.stringify(response.body));
     })
     // .then(() => history.push("/"))

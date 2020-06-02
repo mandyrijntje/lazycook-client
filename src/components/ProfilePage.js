@@ -22,7 +22,7 @@ class ProfilePage extends Component {
       return (
         <div>
           <p>Welcome {this.props.userLogState.email}!</p>
-          <CreateRecipeFormContainer />
+          <CreateRecipeFormContainer user={this.props.userLogState} />
         </div>
       );
     } else {

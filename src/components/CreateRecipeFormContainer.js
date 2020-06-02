@@ -24,36 +24,33 @@ class CreateRecipeFormContainer extends React.Component {
     isVegan: false,
     isVegetarian: false,
     hasNuts: false,
-    hasDairy: false
+    hasDairy: false,
   };
 
-  onChange = event => {
-
+  onChange = (event) => {
     const tempEvent = event.nativeEvent;
     this.setState({
-      [tempEvent.target.name]: tempEvent.target.value
+      [tempEvent.target.name]: tempEvent.target.value,
     });
   };
-  onCheck = event => {
-
-
+  onCheck = (event) => {
     this.setState({
-      [event.target.name]: event.target.checked
+      [event.target.name]: event.target.checked,
     });
   };
 
-  onSelect = theNewIngredientArray => {
+  onSelect = (theNewIngredientArray) => {
     this.setState({
       ...this.state,
-      ingredients: theNewIngredientArray
+      ingredients: theNewIngredientArray,
     });
   };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props
       .createRecipe(this.state, this.state.ingredients, this.props.history)
-      .then(() => this.props.getUser(this.props.user.id));
+      // .then(() => this.props.getUser(this.props.user.id));
     this.setState({
       name: "",
       imageUrl: "",
@@ -67,11 +64,10 @@ class CreateRecipeFormContainer extends React.Component {
       isVegan: false,
       isVegetarian: false,
       hasNuts: false,
-      hasDairy: false
+      hasDairy: false,
     });
   };
   render() {
-
     return (
       <div>
         <h2>Create a simple recipe.</h2>
@@ -91,7 +87,7 @@ class CreateRecipeFormContainer extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    ingredients: state.ingredient.all
+    ingredients: state.ingredient.all,
   };
 }
 const mapDispatchToProps = { createRecipe, getIngredients, getUser };
