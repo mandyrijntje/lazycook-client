@@ -12,8 +12,8 @@ export default class Homepage extends React.Component {
           alt=""
         />
         <div className="description">
-          <h1>Why do you need LazyCook?</h1>
-          <p>
+          <h1 className="h1desc">Why do you need LazyCook?</h1>
+          <p className="pdesc">
             Because, let's face it, you're lazy but you need to eat something
             every once in a while. Vestibulum commodo ante ut elit porttitor,
             non hendrerit dolor ornare. Suspendisse venenatis eros ac

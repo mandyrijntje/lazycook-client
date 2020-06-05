@@ -17,14 +17,16 @@ body {
   padding: 0;
 }
 
-@media screen and (max-width: 600px) {
-  .page-footer {
-    display: none;
-  }
+.page-footer {
+  display: none !important;
 }
 
-.page-footer {
-  bottom: 0;
-  align-self: flex-end;
-  position: relative;
+@media all and (min-width: 768px) {
+  .page-footer {
+    display: block !important;
+    bottom: 0;
+    align-self: flex-end;
+    position: relative;
+    font-size: 0.8rem;
+  }
 }

@@ -13,6 +13,15 @@ import {
 
 class Kitchen extends Component {
   multiselectRef = [];
+  categoryRef0 = React.createRef();
+  categoryRef1 = React.createRef();
+  categoryRef2 = React.createRef();
+  categoryRef3 = React.createRef();
+  categoryRef4 = React.createRef();
+  categoryRef5 = React.createRef();
+  categoryRef6 = React.createRef();
+  categoryRef7 = React.createRef();
+  categoryRef8 = React.createRef(); //creating static references to individually target each category
   state = {
     toggled: false,
     ingredientsList: [],
@@ -24,15 +33,17 @@ class Kitchen extends Component {
       this.handleUnClick(event)
     );
     await this.props.getIngredients();
-    await this.props.categories.forEach(() =>
-      this.multiselectRef.push(React.createRef())
-    );
-  };
-
-  onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.multiselectRef = [
+      this.categoryRef0,
+      this.categoryRef1,
+      this.categoryRef2,
+      this.categoryRef3,
+      this.categoryRef4,
+      this.categoryRef5,
+      this.categoryRef6,
+      this.categoryRef7,
+      this.categoryRef8,
+    ];
   };
 
   onIngredientSelect = (newIngredient) => {
@@ -101,18 +112,7 @@ class Kitchen extends Component {
   };
 
   onRemove = async (ingToBeDeleted) => {
-    console.log(ingToBeDeleted);
-    if (this.multiselectRef[ingToBeDeleted.catIndex]) {
-      console.log(
-        this.multiselectRef,
-        ingToBeDeleted.catIndex,
-        this.multiselectRef[ingToBeDeleted.catIndex].current
-      );
-      this.multiselectRef[
-        ingToBeDeleted.catIndex
-      ].current.resetSelectedValues();
-    }
-    // let arr = [];
+    this.multiselectRef[ingToBeDeleted.catIndex].current.resetSelectedValues();
     const filteredArr = this.state.ingredientsList.filter(
       (item) => item.id !== ingToBeDeleted.id
     );
@@ -130,7 +130,11 @@ class Kitchen extends Component {
     let arr = [];
     if (this.props.databaseIngredients.length > 0) {
       this.props.databaseIngredients.forEach((item) => {
-        if (item.categoryId === id) {
+        if (
+          item.categoryId === id &&
+          this.state.ingredientsList.find((ing) => ing.name === item.name) ===
+            undefined
+        ) {
           arr.push({
             id: item.id,
             name: item.name,
@@ -149,20 +153,17 @@ class Kitchen extends Component {
     return arr;
   };
   render() {
-    console.log(
-      "rrr",
-      this.state.tipIngredient,
-      this.props.tipRecipe,
-      this.props.foundRecipe
-    );
     const categoryList = this.props.categories.map((category, index) => {
       return (
-        <div className="containerMultiselect" key={category.id}>
+        <div
+          className={"containerMultiselect " + "containerMultiselect" + index}
+          key={category.id}
+        >
           <Multiselect
             placeholder="Select an ingredient"
             resetSelectedValues="false"
             displayValue="name"
-            onSelect={this.onIngredientSelect} // Function will trigger on select event
+            onSelect={(event) => this.onIngredientSelect(event)} // Function will trigger on select event
             options={this.getIng(category.id, index)}
             ref={this.multiselectRef[index]}
           />
@@ -222,7 +223,7 @@ class Kitchen extends Component {
                 <Link to={`/store`}> store</Link>.
               </div>
             )
-          ) : this.state.ingredientsList.length === 0? (
+          ) : this.state.ingredientsList.length === 0 ? (
             <div className="tipBox">You must be new here.</div>
           ) : (
             <div className="tipBox">Weird Combo</div>
