@@ -207,26 +207,34 @@ class Kitchen extends Component {
           </div>
           {!this.props.foundRecipe.hasOwnProperty("dataValues") ? (
             this.props.foundRecipe.length === 0 ? (
-              <div>You are new here.</div>
+              <span>
+                Name the item. Choose the item category. Select the item.
+                Repeat.
+              </span>
             ) : this.props.tipRecipe.length === 0 ||
               this.props.tipRecipe.hasOwnProperty("dataValues") ? (
-              <div className="tipBox">
+              <span className="tipBox">
                 No more ideas. Create your custom recipe{" "}
                 <Link to={`/profile`}> here </Link>or shop for fresh ingredients
                 at the <Link to={`/store`}> store</Link>.
-              </div>
+              </span>
             ) : (
-              <div className="tipBox">
-                Psst, add: {this.state.tipIngredient.name} to make{" "}
+              <span className="tipBox">
+                Psst, add {this.state.tipIngredient.name} to make{" "}
                 {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
                 {this.state.tipIngredient.name} at the{" "}
                 <Link to={`/store`}> store</Link>.
-              </div>
+              </span>
             )
           ) : this.state.ingredientsList.length === 0 ? (
-            <div className="tipBox">You must be new here.</div>
+            <span className="tipBox">
+              Name the food. Choose the food category. Select it. Repeat.
+            </span>
           ) : (
-            <div className="tipBox">Weird Combo</div>
+            <span className="tipBox">
+              Odd combination. We're not hating though. Create that recipe <Link to={`/profile`}> here </Link>or shop for fresh
+              ingredients at the <Link to={`/store`}> store</Link>.
+            </span>
           )}
         </div>
       </div>

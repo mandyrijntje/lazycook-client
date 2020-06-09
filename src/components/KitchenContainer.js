@@ -14,7 +14,7 @@ class KitchenContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="kitchenContainer">
         <Kitchen
           onChange={this.onChange}
           values={this.state}
