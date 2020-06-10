@@ -179,7 +179,7 @@ class Kitchen extends Component {
     });
 
     return (
-      <div>
+      <div className="categoryListContainer">
         <ul className="categoryList">{categoryList}</ul>
         <div className="recipeContainer">
           <div className="ingredientBox">
@@ -198,17 +198,71 @@ class Kitchen extends Component {
             })}
           </div>
           <div className="recipeBox">
-            <div className="recipeName">{this.props.foundRecipe.name}</div>
-            <img
-              className="recipeImage"
-              src={this.props.foundRecipe.imageUrl}
-              alt=""
-            />
+            <div className="title">{this.props.foundRecipe.name}</div>
+            {this.props.foundRecipe.length !== 0 &&
+            !this.props.foundRecipe.hasOwnProperty("dataValues") ? (
+              <div className="recipeIngs">
+                <img
+                  className="recipe-image"
+                  src={this.props.foundRecipe.imageUrl}
+                  alt=""
+                />
+                <div className="ingTitle">
+                  Ingredients
+                  <div className="ingList">
+                    {this.props.foundRecipe.ingredients.map(
+                      (ingredient, index) => {
+                        return (
+                          <span key={ingredient.id}>
+                            {index + 1}. {ingredient.name}　{"     "}
+                          </span>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+                <div className="ingTitle">
+                  Instructions
+                  <div className="txt">
+                    {this.props.foundRecipe.step1 ? (
+                      <p className="text-center">
+                        1. {this.props.foundRecipe.step1}{" "}
+                      </p>
+                    ) : null}
+                    {this.props.foundRecipe.step2 ? (
+                      <p className="text-center">
+                        2. {this.props.foundRecipe.step2}{" "}
+                      </p>
+                    ) : null}
+                    {this.props.foundRecipe.step3 ? (
+                      <p className="text-center">
+                        3. {this.props.foundRecipe.step3}{" "}
+                      </p>
+                    ) : null}
+                    {this.props.foundRecipe.step4 ? (
+                      <p className="text-center">
+                        4. {this.props.foundRecipe.step4}{" "}
+                      </p>
+                    ) : null}
+                    {this.props.foundRecipe.step5 ? (
+                      <p className="text-center">
+                        5. {this.props.foundRecipe.step5}{" "}
+                      </p>
+                    ) : null}
+                    {this.props.foundRecipe.step6 ? (
+                      <p className="text-center">
+                        6. {this.props.foundRecipe.step6}{" "}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </div>
           {!this.props.foundRecipe.hasOwnProperty("dataValues") ? (
             this.props.foundRecipe.length === 0 ? (
               <span>
-                Name the item. Choose the item category. Select the item.
+                Check your fridge. Found something? Choose its category. Select.
                 Repeat.
               </span>
             ) : this.props.tipRecipe.length === 0 ||
@@ -228,12 +282,14 @@ class Kitchen extends Component {
             )
           ) : this.state.ingredientsList.length === 0 ? (
             <span className="tipBox">
-              Name the food. Choose the food category. Select it. Repeat.
+              Check your fridge. Found something? Choose its category. Select.
+              Repeat.
             </span>
           ) : (
             <span className="tipBox">
-              Odd combination. We're not hating though. Create that recipe <Link to={`/profile`}> here </Link>or shop for fresh
-              ingredients at the <Link to={`/store`}> store</Link>.
+              Odd combination. We're not hating though. Create that recipe{" "}
+              <Link to={`/profile`}> here </Link>or shop for fresh ingredients
+              at the <Link to={`/store`}> store</Link>.
             </span>
           )}
         </div>

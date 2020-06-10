@@ -1,4 +1,37 @@
 .recipe-img {
   width: 100%;
-  height: auto;
+  height: 6rem;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 14px;
+}
+
+.ingList {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  font-size: 14px;
+}
+
+.recipeIngs {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ingTitle {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.txt {
+  font-size: 14px;
 }

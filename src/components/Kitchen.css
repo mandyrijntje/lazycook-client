@@ -3,7 +3,7 @@
   max-width: 480px;
   padding: 10px 20px 10px 20px !important;
   float: left;
-  background-color: #e29b0b;
+  /* background-color: #e29b0b; */
   margin: 1% 0 2% 1%;
   display: inline-flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
   width: 100%;
   z-index: 2;
   height: 100%;
-  background-color: rgb(255, 92, 100);
+  background-color: rgb(255, 131, 29);
   padding-top: 3px;
   color: black;
 }
@@ -81,7 +81,7 @@
   flex-direction: row;
   align-items: center;
   border-radius: 2%;
-  background-color: royalblue;
+  background-color: rgb(39, 39, 39);
   padding: 2px 4px;
   margin: 1px 0 2px 0;
   font-size: 1rem !important;
@@ -95,7 +95,7 @@
   width: 100%;
   max-width: 768px;
   float: right;
-  background-color: #e29b0b;
+  /* background-color: #e29b0b; */
   margin: 1% 1% 2% 0;
   display: inline-flex;
   flex-direction: column;
@@ -120,10 +120,10 @@
   width: 100%;
   float: right;
   min-height: 300px;
-  background-color: rgb(65, 105, 225);
+  background-color: ivory;
   margin: 1.5% 0 0 0;
   border-style: solid;
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgb(231, 231, 231);
 }
 .bigbox {
   display: inline-flex;
@@ -136,13 +136,13 @@
   justify-content: center;
   position: relative;
   margin: 1px 5px 0 0;
-  background-color: rgb(65, 105, 225);
+  background-color: rgb(39, 39, 39);
   opacity: 1 !important;
 }
 
 .close:hover {
   cursor: pointers;
-  background-color: rgba(251, 48, 99, 0.7);
+  background-color: rgba(251, 65, 48, 0.7);
 }
 
 .close:after {
@@ -156,4 +156,45 @@
   padding-top: 1px;
   color: #fff;
   text-align: center;
+}
+
+.recipe-image {
+  width: 90%;
+  height: 15rem;
+  object-fit: cover;
+  margin: 0 10px 10px 10px;
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 14px;
+}
+
+.ingList {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.recipeIngs {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ingTitle {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.txt {
+  font-size: 14px;
+  font-weight: normal;
 }

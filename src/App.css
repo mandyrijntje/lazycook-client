@@ -28,5 +28,6 @@ body {
     align-self: flex-end;
     position: relative;
     font-size: 0.8rem;
+    z-index: 50;
   }
 }

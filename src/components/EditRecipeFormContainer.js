@@ -68,19 +68,21 @@ class EditRecipeFormContainer extends Component {
 
   render() {
     return (
-      <div>
-        <RecipeForm
-          onSubmit={this.onSubmit}
-          onChange={this.onChange}
-          onCheck={this.onCheck}
-          values={this.state.recipe}
-          ingredients={this.state.recipe.ingredients}
-          onSelect={this.onSelect}
-          databaseIngredients={this.props.ingredients}
-        />
-        <button className="btn btn-dark" onClick={this.onDelete}>
-          Delete
-        </button>
+      <div className="container">
+        <div className="editForm">
+          <RecipeForm
+            onSubmit={this.onSubmit}
+            onChange={this.onChange}
+            onCheck={this.onCheck}
+            values={this.state.recipe}
+            ingredients={this.state.recipe.ingredients}
+            onSelect={this.onSelect}
+            databaseIngredients={this.props.ingredients}
+          />
+          <button className="btn btn-dark" onClick={this.onDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     );
   }

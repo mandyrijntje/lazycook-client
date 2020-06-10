@@ -3,6 +3,7 @@ import { getRecipes } from "../store/actions/recipe";
 import { getUsers } from "../store/actions/users";
 import RecipeCard from "./RecipeCard";
 import { connect } from "react-redux";
+import "./AllRecipes.css";
 
 class AllRecipes extends Component {
   state = {
@@ -21,26 +22,30 @@ class AllRecipes extends Component {
       const sortedRecipes = recipesCopy.sort(
         (a, b) => b.createdAt - a.createdAt
       );
-      return sortedRecipes.map((recipe) => {
-        const recipeAuthorId = recipe.userId;
-        let recipeAuthor = this.props.users[0];
-        if (this.props.users.length !== 1) {
-          recipeAuthor = this.props.users.find(
-            (user) => user.id === recipeAuthorId
-          );
-        }
+      return (
+        <div className="container">
+          {sortedRecipes.map((recipe) => {
+            const recipeAuthorId = recipe.userId;
+            let recipeAuthor = this.props.users[0];
+            if (this.props.users.length !== 1) {
+              recipeAuthor = this.props.users.find(
+                (user) => user.id === recipeAuthorId
+              );
+            }
 
-        return (
-          <div className="d-flex justify-content-center mb-5" key={recipe.id}>
-            <RecipeCard
-              user={recipeAuthor}
-              recipe={recipe}
-              id={recipe.id}
-              userLogState={this.props.userLogState}
-            />
-          </div>
-        );
-      });
+            return (
+              <div className="recipe" key={recipe.id}>
+                <RecipeCard
+                  user={recipeAuthor}
+                  recipe={recipe}
+                  id={recipe.id}
+                  userLogState={this.props.userLogState}
+                />
+              </div>
+            );
+          })}
+        </div>
+      );
     }
     return <p>Loading...</p>;
   }
