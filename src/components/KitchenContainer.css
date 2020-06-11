@@ -1,21 +1,4 @@
-.container {
-  display: inline-flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-.recipe {
-  display: flex;
-  width: 10rem;
-  flex-flow: column;
-  background: white;
-  padding: 1rem;
-  margin: 5px 5px 50px 5px;
-  border-radius: 5px;
-}
-.loader {
+/* .loader {
   position: relative;
   margin: 0 auto;
   width: 100px;
@@ -121,5 +104,31 @@
   80%,
   90% {
     stroke: #ffa700;
+  }
+} */
+
+/* .ping {
+  -webkit-animation: ping 0.8s ease-in-out infinite both;
+  animation: ping 0.8s ease-in-out infinite both;
+} */
+/* .color-change-2x {
+  -webkit-animation: color-change-2x 4s linear infinite alternate-reverse both;
+  animation: color-change-2x 4s linear infinite alternate-reverse both;
+} */
+
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #52a3b8;
+  }
+  100% {
+    background: #f1b339;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #52a3b8;
+  }
+  100% {
+    background: #f1b339;
   }
 }

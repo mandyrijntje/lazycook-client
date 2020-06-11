@@ -6,13 +6,6 @@ import { getRecipesForUser } from "../store/actions/recipe";
 import { connect } from "react-redux";
 
 class ProfilePage extends Component {
-  // componentDidMount() {
-  //   if (this.props.userLogState.jwt) {
-  //     // this.props.getUser(this.props.userLogState.id);
-  //     // this.props.getRecipesForUser(this.props.userLogState.id);
-  //   }
-  // }
-
   render() {
     if (!this.props.userLogState.jwt) {
       return (
@@ -45,9 +38,6 @@ class ProfilePage extends Component {
 
 function mapStateToProps(state) {
   return {
-    // user: state.users.uniqueUser,
-    // userRecipes: state.recipe.userRecipes,
-    // email: state.users.uniqueUser.email,
     userLogState: state.userLogState,
   };
 }

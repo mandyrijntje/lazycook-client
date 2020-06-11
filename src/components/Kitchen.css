@@ -1,10 +1,10 @@
 .categoryList {
   width: 100%;
-  max-width: 480px;
-  padding: 10px 20px 10px 20px !important;
+  max-width: 300px;
+  padding: 10px 10px 10px 10px !important;
   float: left;
   /* background-color: #e29b0b; */
-  margin: 1% 0 2% 1%;
+  margin: 0 0 2% 1%;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
@@ -42,6 +42,11 @@
   background-color: rgb(255, 131, 29);
   padding-top: 3px;
   color: black;
+  border-radius: 5px;
+}
+
+#multiselectContainerReact {
+  border-radius: 5px;
 }
 .changeIndex-1 {
   z-index: 1 !important;
@@ -84,19 +89,27 @@
   background-color: rgb(39, 39, 39);
   padding: 2px 4px;
   margin: 1px 0 2px 0;
-  font-size: 1rem !important;
+  font-size: 1em !important;
+}
+
+.false {
+  max-height: 35px;
+}
+
+._3vt7_Mh4hRCFbp__dFqBCI li {
+  padding: 0 0 0 7px;
 }
 
 .optionContainer {
   background: white;
 }
 .recipeContainer {
-  padding: 10px 20px 10px 20px !important;
+  padding: 10px 10px 10px 0 !important;
   width: 100%;
-  max-width: 768px;
+  max-width: 948px;
   float: right;
   /* background-color: #e29b0b; */
-  margin: 1% 1% 2% 0;
+  margin: 0 1% 2% 0;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -109,7 +122,8 @@
   background-color: white;
   margin: 0 0 1.5% 0;
   border-style: solid;
-  border-color: rgba(209, 208, 208, 0.2);
+  border-color: rgb(240, 240, 240);
+  border-radius: 5px;
 }
 
 .chip {
@@ -121,9 +135,10 @@
   float: right;
   min-height: 300px;
   background-color: ivory;
-  margin: 1.5% 0 0 0;
+  margin: 0.3% 0 0 0;
   border-style: solid;
-  border-color: rgb(231, 231, 231);
+  border-color: rgb(240, 240, 240);
+  border-radius: 5px;
 }
 .bigbox {
   display: inline-flex;
@@ -167,12 +182,18 @@
 }
 
 .title {
-  font-size: 20px;
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  font-size: 25px;
   font-weight: bold;
+  background: rgb(240, 240, 240);
+  border-radius: 5px;
+  margin: 0 0 5px 0;
 }
 
 .subtitle {
   font-size: 14px;
+  margin-bottom: 0;
 }
 
 .ingList {
@@ -197,4 +218,13 @@
 .txt {
   font-size: 14px;
   font-weight: normal;
+  margin: 0 0 0 0;
+}
+
+.tipBox {
+  background: rgb(39, 39, 39);
+  color: white;
+  padding: 10px;
+  width: 938px;
+  border-radius: 5px;
 }

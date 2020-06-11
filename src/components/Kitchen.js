@@ -6,6 +6,7 @@ import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
 import { findRecipe, getTipRecipe, resetRecipe } from "../store/actions/recipe";
 import { getUser } from "../store/actions/user";
+import { getUsers } from "../store/actions/users";
 import {
   getIngredientsForCategory,
   getIngredients,
@@ -29,6 +30,7 @@ class Kitchen extends Component {
     tipIngredient: "",
   };
   componentDidMount = async () => {
+    await this.props.getUsers();
     await document.body.addEventListener("click", (event) =>
       this.handleUnClick(event)
     );
@@ -153,6 +155,13 @@ class Kitchen extends Component {
     return arr;
   };
   render() {
+    const recipeAuthorId = this.props.foundRecipe.userId;
+    let recipeAuthor = this.props.users[0];
+    if (this.props.users.length !== 1) {
+      recipeAuthor = this.props.users.find(
+        (user) => user.id === recipeAuthorId
+      );
+    }
     const categoryList = this.props.categories.map((category, index) => {
       return (
         <div
@@ -160,7 +169,7 @@ class Kitchen extends Component {
           key={category.id}
         >
           <Multiselect
-            placeholder="Select an ingredient"
+            placeholder=" Select an ingredient"
             resetSelectedValues="false"
             displayValue="name"
             onSelect={(event) => this.onIngredientSelect(event)} // Function will trigger on select event
@@ -202,57 +211,37 @@ class Kitchen extends Component {
             {this.props.foundRecipe.length !== 0 &&
             !this.props.foundRecipe.hasOwnProperty("dataValues") ? (
               <div className="recipeIngs">
+                <p className="subtitle">
+                  created by LazyCook{" "}
+                  <strong>
+                    <i>{recipeAuthor.email}</i>
+                  </strong>
+                </p>
                 <img
                   className="recipe-image"
                   src={this.props.foundRecipe.imageUrl}
                   alt=""
                 />
                 <div className="ingTitle">
-                  Ingredients
-                  <div className="ingList">
-                    {this.props.foundRecipe.ingredients.map(
-                      (ingredient, index) => {
-                        return (
-                          <span key={ingredient.id}>
-                            {index + 1}. {ingredient.name}　{"     "}
-                          </span>
-                        );
-                      }
-                    )}
-                  </div>
-                </div>
-                <div className="ingTitle">
                   Instructions
-                  <div className="txt">
+                  <div className="instructions">
                     {this.props.foundRecipe.step1 ? (
-                      <p className="text-center">
-                        1. {this.props.foundRecipe.step1}{" "}
-                      </p>
+                      <p className="txt">1. {this.props.foundRecipe.step1} </p>
                     ) : null}
                     {this.props.foundRecipe.step2 ? (
-                      <p className="text-center">
-                        2. {this.props.foundRecipe.step2}{" "}
-                      </p>
+                      <p className="txt">2. {this.props.foundRecipe.step2} </p>
                     ) : null}
                     {this.props.foundRecipe.step3 ? (
-                      <p className="text-center">
-                        3. {this.props.foundRecipe.step3}{" "}
-                      </p>
+                      <p className="txt">3. {this.props.foundRecipe.step3} </p>
                     ) : null}
                     {this.props.foundRecipe.step4 ? (
-                      <p className="text-center">
-                        4. {this.props.foundRecipe.step4}{" "}
-                      </p>
+                      <p className="txt">4. {this.props.foundRecipe.step4} </p>
                     ) : null}
                     {this.props.foundRecipe.step5 ? (
-                      <p className="text-center">
-                        5. {this.props.foundRecipe.step5}{" "}
-                      </p>
+                      <p className="txt">5. {this.props.foundRecipe.step5} </p>
                     ) : null}
                     {this.props.foundRecipe.step6 ? (
-                      <p className="text-center">
-                        6. {this.props.foundRecipe.step6}{" "}
-                      </p>
+                      <p className="txt">6. {this.props.foundRecipe.step6} </p>
                     ) : null}
                   </div>
                 </div>
@@ -261,7 +250,7 @@ class Kitchen extends Component {
           </div>
           {!this.props.foundRecipe.hasOwnProperty("dataValues") ? (
             this.props.foundRecipe.length === 0 ? (
-              <span>
+              <span className="tipBox">
                 Check your fridge. Found something? Choose its category. Select.
                 Repeat.
               </span>
@@ -300,6 +289,7 @@ class Kitchen extends Component {
 
 function mapStateToProps(state) {
   return {
+    users: state.users.all,
     allIngredients: state.ingredient.all,
     tipRecipe: state.recipe.tipRecipe,
     foundRecipe: state.recipe.foundRecipe,
@@ -313,6 +303,7 @@ const mapDispatchToProps = {
   getUser,
   getIngredients,
   resetRecipe,
+  getUsers,
 };
 
 export default withRouter(

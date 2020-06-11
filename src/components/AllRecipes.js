@@ -9,14 +9,17 @@ class AllRecipes extends Component {
   state = {
     load: true,
   };
-  componentDidMount() {
-    this.props.getUsers();
-    this.props.getRecipes();
-  }
+  componentDidMount = async () => {
+    await this.props.getUsers();
+    await this.props.getRecipes();
+  };
 
   render() {
-    if (this.props.users && this.props.recipes.recipes !== undefined) {
-      // console.log("usersssssss", this.props.users);
+    if (
+      this.props.users.length !== 0 &&
+      this.props.recipes.recipes !== undefined
+    ) {
+      console.log("usersssssss", this.props.users);
       // console.log("recips", this.props.recipes);
       const recipesCopy = [...this.props.recipes.recipes];
       const sortedRecipes = recipesCopy.sort(
@@ -47,7 +50,23 @@ class AllRecipes extends Component {
         </div>
       );
     }
-    return <p>Loading...</p>;
+    return (
+      <div className="showbox">
+        <div className="loader">
+          <svg className="circular" viewBox="25 25 50 50">
+            <circle
+              className="path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              strokeWidth="2"
+              strokeMiterlimit="10"
+            />
+          </svg>
+        </div>
+      </div>
+    );
   }
 }
 
