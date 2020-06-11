@@ -16,10 +16,6 @@ export default function (state = initialState, action = {}) {
     // case "NEW_RECIPE": {
     //   return {
     //     ...state,
-    //     userLogState: {
-    //       ...state.userLogState,
-    //       recipes: [...state.userLogState.recipes, action.payload],
-    //     },
     //     all: [action.payload, ...state.all],
     //   };
     // }

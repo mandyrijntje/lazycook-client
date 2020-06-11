@@ -23,8 +23,8 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li className="nav-item active mx-5">
+            <ul className="d-flex justify-content-between w-100 navbar-nav mr-auto mt-2 mt-lg-0">
+              <li className="nav-item mx-5">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>
@@ -58,8 +58,8 @@ class Navbar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-              <li className="nav-item active mx-5">
+            <ul className="d-flex justify-content-between w-100 navbar-nav mr-auto mt-2 mt-lg-0">
+              <li className="nav-item mx-5">
                 <Link to="/" className="nav-link">
                   Home
                 </Link>

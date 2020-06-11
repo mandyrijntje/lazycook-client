@@ -19,8 +19,6 @@ class AllRecipes extends Component {
       this.props.users.length !== 0 &&
       this.props.recipes.recipes !== undefined
     ) {
-      console.log("usersssssss", this.props.users);
-      // console.log("recips", this.props.recipes);
       const recipesCopy = [...this.props.recipes.recipes];
       const sortedRecipes = recipesCopy.sort(
         (a, b) => b.createdAt - a.createdAt

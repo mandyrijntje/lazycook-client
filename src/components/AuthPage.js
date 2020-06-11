@@ -8,7 +8,7 @@ class AuthPage extends React.Component {
   render() {
     if (!this.props.userLogState.jwt) {
       return (
-        <div>
+        <div className="authPage">
           <div className="loginGif">
             <img src={require("../assets/images/login.gif")} alt="Log in gif" />
           </div>

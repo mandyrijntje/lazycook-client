@@ -1,12 +1,12 @@
 import React from "react";
-
+import "./RecipeForm.css";
 import MultiSelect from "react-multi-select-component";
 
 export default function RecipeForm(props) {
   const options = props.databaseIngredients.map((ingredient) => {
     return { id: ingredient.id, value: ingredient.id, label: ingredient.name };
   });
-const name = props.databaseIngredients.map((ingredient) => ingredient.id);
+  const name = props.databaseIngredients.map((ingredient) => ingredient.id);
 
   return (
     <form className="pt-5 pb-5" onSubmit={props.onSubmit}>
@@ -21,7 +21,7 @@ const name = props.databaseIngredients.map((ingredient) => ingredient.id);
         />
       </div>
       <div className="form-group col-sm-12">
-        <label className="col-sm-2">Image </label>
+        <label className="col-sm-2">Image link</label>
         <input
           className="form-control"
           type="text"
@@ -110,48 +110,51 @@ const name = props.databaseIngredients.map((ingredient) => ingredient.id);
           }
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Is Vegan</label>
-        <input
-          className="form-control"
-          type="checkbox"
-          name="isVegan"
-          onChange={props.onCheck}
-          value={props.values.isVegan}
-        />
-      </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Is Vegetarian</label>
-        <input
-          className="form-control"
-          type="checkbox"
-          name="isVegetarian"
-          onChange={props.onCheck}
-          value={props.values.isVegetarian}
-        />
-      </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">has Dairy</label>
-        <input
-          className="form-control"
-          type="checkbox"
-          name="hasDairy"
-          onChange={props.onCheck}
-          value={props.values.hasDairy}
-        />
-      </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">has Nuts</label>
-        <input
-          className="form-control"
-          type="checkbox"
-          name="hasNuts"
-          onChange={props.onCheck}
-          value={props.values.hasNuts}
-        />
+      <div className="booleans">
+        <div className="form-group col-sm-4">
+          <label className="col-sm-12 mb-0">Is Vegan</label>
+          <input
+            className="form-control"
+            type="checkbox"
+            name="isVegan"
+            onChange={props.onCheck}
+            value={props.values.isVegan}
+          />
+        </div>
+        <div className="form-group col-sm-4">
+          <label className="col-sm-12 mb-0">Is Vegetarian</label>
+          <input
+            className="form-control"
+            type="checkbox"
+            name="isVegetarian"
+            onChange={props.onCheck}
+            value={props.values.isVegetarian}
+          />
+        </div>
+        <div className="form-group col-sm-4">
+          <label className="col-sm-12 mb-0">has Dairy</label>
+          <input
+            className="form-control"
+            type="checkbox"
+            name="hasDairy"
+            onChange={props.onCheck}
+            value={props.values.hasDairy}
+          />
+        </div>
+        <div className="form-group col-sm-4">
+          <label className="col-sm-12 mb-0">has Nuts</label>
+          <input
+            className="form-control"
+            type="checkbox"
+            name="hasNuts"
+            onChange={props.onCheck}
+            value={props.values.hasNuts}
+          />
+        </div>
       </div>
       <MultiSelect
-        placeholder="Select an ingredient"
+        className="ingSelect"
+        placeholder={"Select an ingredient"}
         name={name}
         options={options}
         value={props.ingredients}

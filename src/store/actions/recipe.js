@@ -102,16 +102,16 @@ export const getRecipesForUser = (userParamId) => (dispatch, getState) => {
 // }
 
 export const createRecipe = (data, history) => (dispatch, getState) => {
+  console.log("wga");
   const state = getState();
   const { userLogState } = state;
-  const userId = userLogState.id;
 
   return request
-    .post(`${baseUrl}/users/${userId}/recipe`)
+    .post(`${baseUrl}/recipe`)
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then((response) => {
-      // console.log("yeww", response.body);
+      console.log("yeww", response.body);
       const action = userRecipes({
         user: userLogState,
         body: response.body,
