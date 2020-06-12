@@ -61,17 +61,18 @@ function allRecipes(recipeData) {
   };
 }
 export const getRecipes = () => (dispatch, getState) => {
-  const state = getState();
-  const { recipe } = state;
-  if (!recipe.all.length) {
-    request
-      .get(`${baseUrl}/recipe`)
-      .then((response) => {
-        const action = allRecipes(response.body);
-        dispatch(action);
-      })
-      .catch(console.error);
-  }
+  // const state = getState();
+  // const { recipe } = state;
+  // if (!recipe.all.length) {
+  request
+    .get(`${baseUrl}/recipe`)
+    .then((response) => {
+      console.log(response.body, "dddd");
+      const action = allRecipes(response.body);
+      dispatch(action);
+    })
+    .catch(console.error);
+  // }
 };
 
 function userRecipes(recipeData) {
@@ -113,6 +114,7 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .then((response) => {
       console.log("yeww", response.body);
       const action = userRecipes({
+        imprint: state,
         user: userLogState,
         body: response.body,
       });

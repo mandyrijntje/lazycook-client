@@ -13,12 +13,20 @@ export default function (state = initialState, action = {}) {
         all: action.payload,
       };
     }
-    // case "NEW_RECIPE": {
-    //   return {
-    //     ...state,
-    //     all: [action.payload, ...state.all],
-    //   };
-    // }
+    case "NEW_RECIPE": {
+      console.log(
+        "HEY THERE!",
+        action.payload.body[action.payload.body.length - 1]
+      );
+      console.log("HELLO?", action.payload.imprint.recipe.all);
+      return {
+        ...state,
+        all: [
+          ...action.payload.imprint.recipe.all,
+          action.payload.body[action.payload.body.length - 1],
+        ],
+      };
+    }
     case "FOUND_RECIPE": {
       return {
         ...state,

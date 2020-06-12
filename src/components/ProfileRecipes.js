@@ -5,7 +5,6 @@ import "./ProfileRecipes.css";
 class ProfileRecipes extends Component {
   render() {
     if (this.props.recipes) {
-      //console.log(this.props.user);
       return (
         <div className="container">
           {this.props.recipes.map((recipe) => {

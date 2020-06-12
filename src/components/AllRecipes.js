@@ -15,11 +15,9 @@ class AllRecipes extends Component {
   };
 
   render() {
-    if (
-      this.props.users.length !== 0 &&
-      this.props.recipes.recipes !== undefined
-    ) {
-      const recipesCopy = [...this.props.recipes.recipes];
+    console.log(this.props.users.length, this.props.recipes);
+    if (this.props.users.length !== 0 && this.props.recipes !== undefined) {
+      const recipesCopy = [...this.props.recipes];
       const sortedRecipes = recipesCopy.sort(
         (a, b) => b.createdAt - a.createdAt
       );

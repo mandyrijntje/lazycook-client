@@ -12,7 +12,6 @@ export default class RecipeCard extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
   render() {
-    // console.log(this.props.user);
     const now = new Date();
     const updated = new Date(this.props.recipe.updatedAt);
     const hours = Math.abs(now - updated) / 36e5;

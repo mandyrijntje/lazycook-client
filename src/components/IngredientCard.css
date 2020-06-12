@@ -1,0 +1,83 @@
+.ingredientCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.ingredient-img {
+  width: 100%;
+  height: 8rem;
+  object-fit: cover;
+  margin-bottom: 10px;
+  -webkit-transition: opacity 20s ease-in;
+  -moz-transition: opacity 20s ease-in;
+  -o-transition: opacity 20s ease-in;
+  transition: opacity 20s ease-in;
+}
+
+.title {
+  display: inline-block;
+  padding: 0 10px 0 10px;
+  font-size: 18px !important;
+  font-weight: bold;
+  background: rgb(240, 240, 240);
+  border-radius: 5px;
+  margin: 0 0 5px 0;
+}
+
+.subtitle {
+  font-size: 14px;
+}
+
+.ingList {
+  display: flex;
+  flex-flow: column;
+  text-align: center;
+  font-size: 14px;
+}
+
+.recipeIngs {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ingTitle {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.ingTxt {
+  font-size: 13px;
+  margin-bottom: -5px;
+}
+
+.buy {
+  width: 100%;
+  display: inline-block;
+  font-weight: 300;
+  padding: 0.3em 1.2em;
+  margin: 1em 0 0.3em 0;
+  border-radius: 2em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  background-color: #438899;
+  text-align: center;
+  transition: all 0.5s;
+}
+
+.buy:hover {
+  background-color: #ffa600;
+  text-decoration: none;
+  color: #ffffff;
+  box-shadow: 1px 1px 30px 2px white;
+}
+
+.ingBooleans {
+  width: 10px;
+  height: auto;
+}

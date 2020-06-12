@@ -3,6 +3,10 @@
   height: 6rem;
   object-fit: cover;
   margin-bottom: 10px;
+  -webkit-transition: opacity 2s ease-in;
+  -moz-transition: opacity 2s ease-in;
+  -o-transition: opacity 2s ease-in;
+  transition: opacity 2s ease-in;
 }
 
 .title {
