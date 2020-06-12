@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { createRecipe } from "../store/actions/recipe";
 import RecipeForm from "./RecipeForm";
-import { getUser } from "../store/actions/user";
 import { getIngredients } from "../store/actions/ingredient";
 
 class CreateRecipeFormContainer extends React.Component {
@@ -48,9 +47,11 @@ class CreateRecipeFormContainer extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props
-      .createRecipe(this.state, this.state.ingredients, this.props.history)
-      // .then(() => this.props.getUser(this.props.user.id));
+    this.props.createRecipe(
+      this.state,
+      this.state.ingredients,
+      this.props.history
+    );
     this.setState({
       name: "",
       imageUrl: "",
@@ -90,7 +91,7 @@ function mapStateToProps(state) {
     ingredients: state.ingredient.all,
   };
 }
-const mapDispatchToProps = { createRecipe, getIngredients, getUser };
+const mapDispatchToProps = { createRecipe, getIngredients };
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(CreateRecipeFormContainer)

@@ -5,7 +5,6 @@ import { withRouter } from "react-router";
 import { Multiselect } from "multiselect-react-dropdown";
 import "./Kitchen.css";
 import { findRecipe, getTipRecipe, resetRecipe } from "../store/actions/recipe";
-import { getUser } from "../store/actions/user";
 import { getUsers } from "../store/actions/users";
 import {
   getIngredientsForCategory,
@@ -206,79 +205,100 @@ class Kitchen extends Component {
               );
             })}
           </div>
-          <div className="recipeBox">
-            <div className="title">{this.props.foundRecipe.name}</div>
-            {this.props.foundRecipe.length !== 0 &&
-            !this.props.foundRecipe.hasOwnProperty("dataValues") ? (
-              <div className="recipeIngs">
-                <p className="subtitle">
-                  created by LazyCook{" "}
-                  <strong>
-                    <i>{recipeAuthor.email}</i>
-                  </strong>
-                </p>
-                <img
-                  className="recipe-image"
-                  src={this.props.foundRecipe.imageUrl}
-                  alt=""
-                />
-                <div className="ingTitle">
-                  Instructions
-                  <div className="instructions">
-                    {this.props.foundRecipe.step1 ? (
-                      <p className="txt">1. {this.props.foundRecipe.step1} </p>
-                    ) : null}
-                    {this.props.foundRecipe.step2 ? (
-                      <p className="txt">2. {this.props.foundRecipe.step2} </p>
-                    ) : null}
-                    {this.props.foundRecipe.step3 ? (
-                      <p className="txt">3. {this.props.foundRecipe.step3} </p>
-                    ) : null}
-                    {this.props.foundRecipe.step4 ? (
-                      <p className="txt">4. {this.props.foundRecipe.step4} </p>
-                    ) : null}
-                    {this.props.foundRecipe.step5 ? (
-                      <p className="txt">5. {this.props.foundRecipe.step5} </p>
-                    ) : null}
-                    {this.props.foundRecipe.step6 ? (
-                      <p className="txt">6. {this.props.foundRecipe.step6} </p>
-                    ) : null}
+          {this.state.ingredientsList.length !== 0 ? (
+            <div className="recipeBox">
+              <div className="title">{this.props.foundRecipe.name}</div>
+              {this.props.foundRecipe.length !== 0 &&
+              !this.props.foundRecipe.hasOwnProperty("dataValues") ? (
+                <div className="recipeIngs">
+                  <p className="subtitle">
+                    created by LazyCook{" "}
+                    <strong>
+                      <i>{recipeAuthor.email}</i>
+                    </strong>
+                  </p>
+                  <img
+                    className="recipe-image"
+                    src={this.props.foundRecipe.imageUrl}
+                    alt=""
+                  />
+                  <div className="ingTitle">
+                    Instructions
+                    <div className="instructions">
+                      {this.props.foundRecipe.step1 ? (
+                        <p className="txt">
+                          1. {this.props.foundRecipe.step1}{" "}
+                        </p>
+                      ) : null}
+                      {this.props.foundRecipe.step2 ? (
+                        <p className="txt">
+                          2. {this.props.foundRecipe.step2}{" "}
+                        </p>
+                      ) : null}
+                      {this.props.foundRecipe.step3 ? (
+                        <p className="txt">
+                          3. {this.props.foundRecipe.step3}{" "}
+                        </p>
+                      ) : null}
+                      {this.props.foundRecipe.step4 ? (
+                        <p className="txt">
+                          4. {this.props.foundRecipe.step4}{" "}
+                        </p>
+                      ) : null}
+                      {this.props.foundRecipe.step5 ? (
+                        <p className="txt">
+                          5. {this.props.foundRecipe.step5}{" "}
+                        </p>
+                      ) : null}
+                      {this.props.foundRecipe.step6 ? (
+                        <p className="txt">
+                          6. {this.props.foundRecipe.step6}{" "}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : null}
-          </div>
-          {!this.props.foundRecipe.hasOwnProperty("dataValues") ? (
-            this.props.foundRecipe.length === 0 ? (
+              ) : null}
+            </div>
+          ) : null}
+          {this.state.ingredientsList.length !== 0 ? (
+            !this.props.foundRecipe.hasOwnProperty("dataValues") ? (
+              this.props.foundRecipe.length === 0 ? (
+                <span className="tipBox">
+                  Check your fridge. Found something? Choose its category.
+                  Select. Repeat.
+                </span>
+              ) : this.props.tipRecipe.length === 0 ||
+                this.props.tipRecipe.hasOwnProperty("dataValues") ? (
+                <span className="tipBox">
+                  No more ideas. Create your custom recipe{" "}
+                  <Link to={`/profile`}> here </Link>or shop for fresh
+                  ingredients at the <Link to={`/store`}> store</Link>.
+                </span>
+              ) : (
+                <span className="tipBox">
+                  Psst, add {this.state.tipIngredient.name} to make{" "}
+                  {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
+                  {this.state.tipIngredient.name} at the{" "}
+                  <Link to={`/store`}> store</Link>.
+                </span>
+              )
+            ) : this.state.ingredientsList.length === 0 ? (
               <span className="tipBox">
                 Check your fridge. Found something? Choose its category. Select.
                 Repeat.
               </span>
-            ) : this.props.tipRecipe.length === 0 ||
-              this.props.tipRecipe.hasOwnProperty("dataValues") ? (
+            ) : (
               <span className="tipBox">
-                No more ideas. Create your custom recipe{" "}
+                Odd combination. We're not hating though. Create that recipe{" "}
                 <Link to={`/profile`}> here </Link>or shop for fresh ingredients
                 at the <Link to={`/store`}> store</Link>.
               </span>
-            ) : (
-              <span className="tipBox">
-                Psst, add {this.state.tipIngredient.name} to make{" "}
-                {this.props.tipRecipe.name}. Don't have it at home? Shop for{" "}
-                {this.state.tipIngredient.name} at the{" "}
-                <Link to={`/store`}> store</Link>.
-              </span>
             )
-          ) : this.state.ingredientsList.length === 0 ? (
+          ) : (
             <span className="tipBox">
               Check your fridge. Found something? Choose its category. Select.
               Repeat.
-            </span>
-          ) : (
-            <span className="tipBox">
-              Odd combination. We're not hating though. Create that recipe{" "}
-              <Link to={`/profile`}> here </Link>or shop for fresh ingredients
-              at the <Link to={`/store`}> store</Link>.
             </span>
           )}
         </div>
@@ -300,7 +320,7 @@ const mapDispatchToProps = {
   findRecipe,
   getTipRecipe,
   getIngredientsForCategory,
-  getUser,
+
   getIngredients,
   resetRecipe,
   getUsers,

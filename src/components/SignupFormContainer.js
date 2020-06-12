@@ -1,12 +1,12 @@
 import React from "react";
 import SignupForm from "./SignupForm";
 import { connect } from "react-redux";
-import { signup, getUser } from "../store/actions/user";
+import { signup } from "../store/actions/user";
 
 class SignupFormContainer extends React.Component {
   state = { email: "", password: "" };
 
-  onSubmit = event => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.props.signup(
       this.state.email,
@@ -14,9 +14,9 @@ class SignupFormContainer extends React.Component {
       this.props.history
     );
   };
-  onChange = event => {
+  onChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
   render() {
@@ -31,4 +31,4 @@ class SignupFormContainer extends React.Component {
     );
   }
 }
-export default connect(null, { signup, getUser })(SignupFormContainer);
+export default connect(null, { signup })(SignupFormContainer);

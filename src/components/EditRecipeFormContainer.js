@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { updateRecipe, deleteRecipe } from "../store/actions/recipe";
 import { getIngredients } from "../store/actions/ingredient";
-import { getUser } from "../store/actions/user";
 import RecipeForm from "./RecipeForm";
 
 class EditRecipeFormContainer extends Component {
@@ -97,7 +96,6 @@ const mapDispatchToProps = {
   updateRecipe,
   deleteRecipe,
   getIngredients,
-  getUser,
 };
 
 export default withRouter(
