@@ -15,13 +15,13 @@ export default class Homepage extends React.Component {
           <h1 className="h1desc">Why do you need LazyCook?</h1>
           <p className="pdesc">
             Because, let's face it, you're lazy but you need to eat something
-            every once in a while. Vestibulum commodo ante ut elit porttitor,
-            non hendrerit dolor ornare. Suspendisse venenatis eros ac
-            scelerisque aliquam. Maecenas ut odio consequat, suscipit mi eu,
-            efficitur leo. Pellentesque habitant morbi tristique senectus et
-            netus et malesuada fames ac turpis egestas. Phasellus elementum
-            vehicula erat. Praesent consectetur velit urna. Sed bibendum nisi in
-            ipsum tempus.
+            every once in a while. From the basements of Nederland comes your
+            saviour, Lazycook. Create an account, then go to your kitchen, then
+            come back here, I meant go to the Kitchen™ (in the user navigation
+            bar), play with ingredients, generate recipes. Make and share your
+            recipes with the world. Be happy. Live free. Find some bread in your
+            fridge and wipe your tears with it. Love whoever you want. Lekker
+            leven, lekker eten.
           </p>
         </div>
       </div>
