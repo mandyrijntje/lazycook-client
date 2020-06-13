@@ -23,8 +23,10 @@ class StoreContainer extends Component {
     }
     return (
       <div className="guestStore">
-        databaseIngredients={this.props.ingredients}
-        categories={this.props.categories}
+        <Store
+          databaseIngredients={this.props.ingredients}
+          categories={this.props.categories}
+        ></Store>
       </div>
     );
   }
