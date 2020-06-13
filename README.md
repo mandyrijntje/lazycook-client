@@ -22,12 +22,14 @@ PROS: Will teach you how to make toast
 ## Setting up (local)
 
 ### Client
+
 - React version
   - ^16.13.1 or similar, I'm not the boss of you :D
 - Redux version
   - ^4.0.5 or similar
 
 ### Server
+
 - Node version
   - ^12.16.1 or similar
 - Express version
@@ -40,7 +42,7 @@ PROS: Will teach you how to make toast
 ## Installation
 
 0. **Clone the repositories** <br>
-[Clone the server here!](https://github.com/messmonte/lazycook-server)
+   [Clone the server here!](https://github.com/messmonte/lazycook-server)
 1. **Install all dependencies** ->
 
 
@@ -69,6 +71,5 @@ PROS: Will teach you how to make toast
     npm start
     ```
     Log in at localhost:3000/login, sign up using the Join button
-
 
 5. **Enjoy your lazy lunch.**
