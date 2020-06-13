@@ -10,32 +10,32 @@ PROS: Will teach you how to make toast
 
 ### For Users
 
-- Kitchen: Generates recipes based on ingredients selected by you <br>(Beta version, can do limited ingredient combinations for now. Go to the 'Recipes' link in the navigation bar and you will find some ingredient combination ideas there that you can test. It's a bit round-the-bush, but I'm expanding the database with my limited culinary talent so bear with me.)
-- Store: Users can add optional ingredients to their cart to shop <br>(Functionality to be created)
+- Kitchen: Generates recipes based on ingredients selected by you <br>(Beta version, can do limited ingredient combinations for now. Go to the 'Recipes' link in the navigation bar and you will find some ingredient combinations from the recipes that you can test. It's a bit round-the-bush, but I'm expanding the database with my limited culinary talent so bear with me.)
+- Store: Users can add ingredients to their cart to buy them <br>(Work in progress)
 - Recipes: Displays a list of recipes by users of the site
-- Profile: A user can see their recipes in a list, and can create a recipe
+- Profile: A user can see their recipes in a list, and can create/update/delete their recipe
 
 ### For Guests
 
-- Store: Guests can shop for products at the store <br>(Functionality to be created)
+- Store: Guests can shop for products at the store <br>(Work in progress)
 
 ## Setting up (local)
 
 ### Client
 - React version
-  - ^16.13.1
+  - ^16.13.1 or similar, I'm not the boss of you :D
 - Redux version
-  - ^4.0.5
+  - ^4.0.5 or similar
 
 ### Server
 - Node version
-  - ^12.16.1
+  - ^12.16.1 or similar
 - Express version
-  - ^4.17.1
+  - ^4.17.1 or similar
 - Sequelize version
-  - ^5.21.5
+  - ^5.21.5 or similar
 - PostgresQL version
-  - ^7.18.2
+  - ^7.18.2 or similar
 
 ## Installation
 
@@ -68,7 +68,7 @@ PROS: Will teach you how to make toast
     ```
     npm start
     ```
-    Log in at localhost:3000/login, sign up using the Join link
+    Log in at localhost:3000/login, sign up using the Join button
 
 
 5. **Enjoy your lazy lunch.**
