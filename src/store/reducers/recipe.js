@@ -14,11 +14,6 @@ export default function (state = initialState, action = {}) {
       };
     }
     case "NEW_RECIPE": {
-      console.log(
-        "HEY THERE!",
-        action.payload.body[action.payload.body.length - 1]
-      );
-      console.log("HELLO?", action.payload.imprint.recipe.all);
       return {
         ...state,
         all: [

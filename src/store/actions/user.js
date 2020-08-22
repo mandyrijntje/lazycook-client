@@ -59,7 +59,6 @@ export const getUser = (userParamId) => (dispatch, getState) => {
     .get(`${baseUrl}/users/` + userParamId)
     .then((response) => {
       const body = response.body;
-      console.log(body);
       const uniqueUser = {
         id: body.id,
         email: body.email,

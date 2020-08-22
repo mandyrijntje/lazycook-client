@@ -67,7 +67,6 @@ export const getRecipes = () => (dispatch, getState) => {
   request
     .get(`${baseUrl}/recipe`)
     .then((response) => {
-      console.log(response.body, "dddd");
       const action = allRecipes(response.body);
       dispatch(action);
     })
@@ -95,15 +94,9 @@ export const getRecipesForUser = (userParamId) => (dispatch, getState) => {
   }
 };
 
-// function newRecipe(newRecipeData) {
-//   return {
-//     type: "NEW_RECIPE",
-//     payload: newRecipeData
-//   };
-// }
+
 
 export const createRecipe = (data, history) => (dispatch, getState) => {
-  console.log("wga");
   const state = getState();
   const { userLogState } = state;
 
@@ -112,7 +105,6 @@ export const createRecipe = (data, history) => (dispatch, getState) => {
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .send({ ...data, userId: userLogState.id })
     .then((response) => {
-      console.log("yeww", response.body);
       const action = userRecipes({
         imprint: state,
         user: userLogState,
@@ -141,14 +133,12 @@ export const updateRecipe = (id, update, history) => {
         .put(`${baseUrl}/recipe/${id}`)
         .set("Authorization", `Bearer ${userLogState.jwt}`)
         .send({ ...update, userId: userLogState.id });
-      console.log("its a me mario,", response.body);
       const action = changeRecipe({
         user: userLogState,
         body: response.body,
       });
 
       dispatch(action);
-      // history.push("/profile");
     } catch (error) {
       console.error(error);
     }
@@ -168,7 +158,6 @@ export const deleteRecipe = (id) => (dispatch, getState) => {
     .delete(`${baseUrl}/recipe/${id}`)
     .set("Authorization", `Bearer ${userLogState.jwt}`)
     .then((response) => {
-      console.log("hey");
       dispatch(
         uniqueRecipeDelete({
           user: userLogState,

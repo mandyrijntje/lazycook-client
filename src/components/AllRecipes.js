@@ -17,7 +17,6 @@ class AllRecipes extends Component {
   };
 
   render() {
-    console.log(this.props.users.length, this.props.recipes);
     if (this.props.userLogState.jwt) {
       if (this.props.users.length !== 0 && this.props.recipes !== undefined) {
         const recipesCopy = [...this.props.recipes];
