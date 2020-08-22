@@ -1,4 +1,4 @@
-.editForm {
+.editBox {
   display: flex;
   width: 50rem !important;
   flex-flow: column;
@@ -6,6 +6,7 @@
   padding: 1rem;
   margin: 5px 5px 50px 5px;
   border-radius: 5px;
+  max-width:160px !important;
 }
 
 .container {

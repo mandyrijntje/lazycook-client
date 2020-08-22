@@ -3,17 +3,39 @@
 }
 
 .booleans {
+  width:100%;
+  text-transform:uppercase;
   display: inline-flex;
-  font-size:14px !important;
-  margin: 0 0 0 -120px;
-  max-width:90% !important;
+  font-size:10px !important;
 }
 
 .edit-form {
   max-width:100% !important;
   text-align:center;
+  padding: 0 !important;
 }
 
 .label-text {
   text-align:center;
+}
+
+.tickBox{
+  padding: 0 3rem !important;
+  text-align:center;
+}
+
+.isVeg{
+  margin-left:-10px;
+}
+
+.sizeForm {
+  text-align:center;
+}
+
+.doneButton {
+  width:100%;
+}
+
+.buttonDiv {
+  max-width:200px;
 }

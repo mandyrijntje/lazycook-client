@@ -4,6 +4,7 @@ import { withRouter } from "react-router";
 import { updateRecipe, deleteRecipe } from "../store/actions/recipe";
 import { getIngredients } from "../store/actions/ingredient";
 import RecipeForm from "./RecipeForm";
+import "./EditRecipeFormContainer.css";
 
 class EditRecipeFormContainer extends Component {
   state = { recipe: { ...this.props.recipe, ingredients: [] } };
@@ -68,7 +69,7 @@ class EditRecipeFormContainer extends Component {
   render() {
     return (
       <div className="container">
-        <div className="editForm">
+        <div className="editBox">
           <RecipeForm
             onSubmit={this.onSubmit}
             onChange={this.onChange}
