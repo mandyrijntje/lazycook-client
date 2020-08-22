@@ -78,7 +78,7 @@ class EditRecipeFormContainer extends Component {
             onSelect={this.onSelect}
             databaseIngredients={this.props.ingredients}
           />
-          <button className="btn btn-dark" onClick={this.onDelete}>
+          <button className="btn btn-danger mb-5" onClick={this.onDelete}>
             Delete
           </button>
         </div>

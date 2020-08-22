@@ -4,5 +4,16 @@
 
 .booleans {
   display: inline-flex;
+  font-size:14px !important;
   margin: 0 0 0 -120px;
+  max-width:90% !important;
+}
+
+.edit-form {
+  max-width:100% !important;
+  text-align:center;
+}
+
+.label-text {
+  text-align:center;
 }

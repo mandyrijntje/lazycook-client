@@ -9,41 +9,41 @@ export default function RecipeForm(props) {
   const name = props.databaseIngredients.map((ingredient) => ingredient.id);
 
   return (
-    <form className="pt-5 pb-5" onSubmit={props.onSubmit}>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Name</label>
+    <form className="pt-5 pb-1" onSubmit={props.onSubmit}>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Name</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="name"
           onChange={props.onChange}
           value={props.values.name}
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Image link</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Image link</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="imageUrl"
           onChange={props.onChange}
           value={props.values.imageUrl}
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step1</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Step1</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step1"
           onChange={props.onChange}
           value={props.values.step1}
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step2 (Optional)</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Step2 (Optional)</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step2"
           onChange={props.onChange}
@@ -54,10 +54,10 @@ export default function RecipeForm(props) {
           }
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step3 (Optional)</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Step3 (Optional)</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step3"
           onChange={props.onChange}
@@ -68,10 +68,10 @@ export default function RecipeForm(props) {
           }
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step4 (Optional)</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className=" label-text">Step4 (Optional)</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step4"
           onChange={props.onChange}
@@ -82,10 +82,10 @@ export default function RecipeForm(props) {
           }
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step5 (Optional)</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className="label-text">Step5 (Optional)</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step5"
           onChange={props.onChange}
@@ -96,10 +96,10 @@ export default function RecipeForm(props) {
           }
         />
       </div>
-      <div className="form-group col-sm-12">
-        <label className="col-sm-2">Step6 (Optional)</label>
+      <div className="form-group edit-form col-sm-12">
+        <label className="label-text">Step6 (Optional)</label>
         <input
-          className="form-control"
+          className="form-control input-box"
           type="text"
           name="step6"
           onChange={props.onChange}
@@ -112,7 +112,7 @@ export default function RecipeForm(props) {
       </div>
       <div className="booleans">
         <div className="form-group col-sm-4">
-          <label className="col-sm-12 mb-0">Is Vegan</label>
+          <label className="col-sm-12 mb-0">Vegan</label>
           <input
             className="form-control"
             type="checkbox"
@@ -122,7 +122,7 @@ export default function RecipeForm(props) {
           />
         </div>
         <div className="form-group col-sm-4">
-          <label className="col-sm-12 mb-0">Is Vegetarian</label>
+          <label className="col-sm-12 mb-0">Vegetarian</label>
           <input
             className="form-control"
             type="checkbox"
@@ -132,7 +132,7 @@ export default function RecipeForm(props) {
           />
         </div>
         <div className="form-group col-sm-4">
-          <label className="col-sm-12 mb-0">has Dairy</label>
+          <label className="col-sm-12 mb-0">Dairy</label>
           <input
             className="form-control"
             type="checkbox"
@@ -142,7 +142,7 @@ export default function RecipeForm(props) {
           />
         </div>
         <div className="form-group col-sm-4">
-          <label className="col-sm-12 mb-0">has Nuts</label>
+          <label className="col-sm-12 mb-0">Nuts</label>
           <input
             className="form-control"
             type="checkbox"
