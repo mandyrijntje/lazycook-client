@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Homepage from "./components/Homepage";
+import CheckoutContainer from "./components/CheckoutContainer";
 import KitchenContainer from "./components/KitchenContainer";
 import StoreContainer from "./components/StoreContainer";
 import AuthPage from "./components/AuthPage";
@@ -18,6 +19,7 @@ function App() {
       <Navbar />
       <Route exact path="/" component={Homepage} />
       <Route exact path="/kitchen" component={KitchenContainer} />
+      <Route exact path="/checkout" component={CheckoutContainer} />
       <Route exact path="/store" component={StoreContainer} />
       <Route exact path="/login" component={AuthPage} />
       <Route exact path="/signup" component={SignupFormContainer} />
