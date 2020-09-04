@@ -9,6 +9,11 @@ class CheckoutContainer extends React.Component {
  
   }
 
+  onSubmit = (event) => {
+    event.preventDefault();
+    console.log("submitted checkout form")
+  };
+
   render() {
     if (this.props.userLogState.jwt) {
       return (
