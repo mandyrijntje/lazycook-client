@@ -5,7 +5,6 @@ import { getRecipes } from "../store/actions/recipe";
 import { getUsers } from "../store/actions/users";
 import RecipeCard from "./RecipeCard";
 
-import "./AllRecipes.css";
 
 class AllRecipes extends Component {
   state = {

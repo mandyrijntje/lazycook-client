@@ -187,9 +187,9 @@ class Kitchen extends Component {
     });
 
     return (
-      <div className="categoryListContainer">
-        <ul className="categoryList">{categoryList}</ul>
-        <div className="recipeContainer">
+      <div className="row mx-0 categoryListContainer">
+        <ul className="col-12 col-sm-3 categoryList">{categoryList}</ul>
+        <div className="col-12 col-sm-9 recipeContainer">
           <div className="ingredientBox">
             {this.state.ingredientsList.map((ing, index) => {
               return (

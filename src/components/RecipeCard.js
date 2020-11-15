@@ -56,7 +56,7 @@ export default class RecipeCard extends Component {
             })}
           </div>
         </div>
-        <img className="recipe-img" src={this.props.recipe.imageUrl} alt="" />
+        <img className="recipe-img" loading="lazy" src={this.props.recipe.imageUrl} alt="" />
         <div className="ingTitle">Instructions</div>
         {this.props.recipe.step1 ? (
           <p className="txt">1. {this.props.recipe.step1} </p>
